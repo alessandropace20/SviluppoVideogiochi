@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://d340l05u7syfu"]
+
+[ext_resource type="Script" uid="uid://drtihtm056ft" path="res://assets/coin.gd" id="1_pivsm"]
+[ext_resource type="Texture2D" uid="uid://duskuhwqsiy08" path="res://resources/sprites/Coin_tiles.png" id="1_y70ne"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pivsm"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klnt7"]
+atlas = ExtResource("1_y70ne")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnkb4"]
+atlas = ExtResource("1_y70ne")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82w1j"]
+atlas = ExtResource("1_y70ne")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5habd"]
+atlas = ExtResource("1_y70ne")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnlj8"]
+atlas = ExtResource("1_y70ne")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xty68"]
+atlas = ExtResource("1_y70ne")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hlamh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klnt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnkb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82w1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5habd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnlj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xty68")
+}],
+"loop": true,
+"name": &"rotate",
+"speed": 8.0
+}]
+
+[node name="Coin" type="Node2D" unique_id=1772581051]
+script = ExtResource("1_pivsm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=567126629]
+shape = SubResource("CircleShape2D_pivsm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=279639621]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hlamh")
+animation = &"rotate"
