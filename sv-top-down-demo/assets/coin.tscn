@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d340l05u7syfu"]
 
 [ext_resource type="Script" uid="uid://drtihtm056ft" path="res://assets/coin.gd" id="1_pivsm"]
-[ext_resource type="Texture2D" uid="uid://duskuhwqsiy08" path="res://resources/sprites/Coin_tiles.png" id="1_y70ne"]
+[ext_resource type="Texture2D" uid="uid://cs1ovcm85smyd" path="res://resources/sprites/Coin_tiles.png" id="1_y70ne"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pivsm"]
 radius = 7.0
