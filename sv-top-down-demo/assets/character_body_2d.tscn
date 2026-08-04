@@ -1001,35 +1001,34 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bliqt"]
 size = Vector2(14.5, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtmll"]
+size = Vector2(16.5, 36.5)
+
 [node name="Player" type="CharacterBody2D" unique_id=1444117095 groups=["player"]]
 script = ExtResource("1_bliqt")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=393448543]
-visible = false
-position = Vector2(280, 198)
-polygon = PackedVector2Array(1, 15, 1, -1, 5, -12, 11, -15, 17, -12, 21, -1, 21, 15, 17, 27, 5, 27)
-disabled = true
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=991897577]
 modulate = Color(1, 1, 1, 0.4509804)
 texture_filter = 1
-position = Vector2(291, 222)
+position = Vector2(0, 17)
 scale = Vector2(0.53125, 0.53125)
 texture = ExtResource("2_gtmll")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1470840247]
 texture_filter = 1
-position = Vector2(291, 204.00002)
+position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.1125001, 1.1125)
 sprite_frames = SubResource("SpriteFrames_tud5j")
 animation = &"idle_up"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=245258795]
-position = Vector2(290, 171)
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394386328]
-visible = false
-position = Vector2(290.75, 222)
+position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_bliqt")
+
+[node name="HurtBox" type="CollisionShape2D" parent="." unique_id=658272922]
+position = Vector2(-0.25, 2.25)
+shape = SubResource("RectangleShape2D_gtmll")
