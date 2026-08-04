@@ -1019,7 +1019,7 @@ texture_filter = 1
 position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.1125001, 1.1125)
 sprite_frames = SubResource("SpriteFrames_tud5j")
-animation = &"idle_up"
+animation = &"attack2_right"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=245258795]
 zoom = Vector2(2.5, 2.5)
@@ -1032,3 +1032,5 @@ shape = SubResource("RectangleShape2D_bliqt")
 [node name="HurtBox" type="CollisionShape2D" parent="." unique_id=658272922]
 position = Vector2(-0.25, 2.25)
 shape = SubResource("RectangleShape2D_gtmll")
+
+[node name="AttackArea" type="CollisionShape2D" parent="." unique_id=526048763 groups=["player"]]

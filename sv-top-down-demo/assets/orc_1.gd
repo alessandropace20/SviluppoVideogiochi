@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var attack_distance := 30.0
 @export var attack_damage := 10
 @export var attack_cooldown := 1.0
+@export var max_health := 50
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea
@@ -11,8 +12,10 @@ extends CharacterBody2D
 var player: CharacterBody2D = null
 var facing := "down"
 var can_attack := true
+var health: int
 
 func _ready():
+	health = max_health
 	sprite.play("idle_down")
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)

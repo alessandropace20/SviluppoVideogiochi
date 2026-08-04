@@ -634,7 +634,7 @@ size = Vector2(16, 7)
 [sub_resource type="CircleShape2D" id="CircleShape2D_wwnpu"]
 radius = 76.00658
 
-[node name="Orc_1" type="CharacterBody2D" unique_id=1054063316]
+[node name="Orc_1" type="CharacterBody2D" unique_id=1054063316 groups=["enemies"]]
 script = ExtResource("1_wwnpu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1645174496]

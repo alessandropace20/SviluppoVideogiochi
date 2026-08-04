@@ -6605,13 +6605,13 @@ position = Vector2(299, -82)
 
 [node name="CharacterBody2D" parent="." unique_id=1444117095 instance=ExtResource("9_v1ykb")]
 texture_filter = 1
-position = Vector2(-194, 391)
+position = Vector2(97, 592)
 motion_mode = 1
 
 [node name="HostileMobs" type="Node" parent="." unique_id=267847453]
 
 [node name="Orc_1" parent="HostileMobs" unique_id=1054063316 instance=ExtResource("11_lx420")]
-position = Vector2(38, 506)
+position = Vector2(38, 448)
 
 [node name="Perspective" type="Node2D" parent="." unique_id=2106575986]
 
