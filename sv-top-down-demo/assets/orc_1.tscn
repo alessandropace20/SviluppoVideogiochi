@@ -653,3 +653,5 @@ shape = SubResource("RectangleShape2D_ug7bh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1533907725]
 visible = false
 shape = SubResource("CircleShape2D_wwnpu")
+
+[node name="HurtBox" type="CollisionShape2D" parent="." unique_id=1815140148]
