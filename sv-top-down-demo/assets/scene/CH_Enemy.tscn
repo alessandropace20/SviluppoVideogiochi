@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b2bghpdbn0ghr"]
 
 [ext_resource type="Texture2D" uid="uid://m8c2nmi0fk4l" path="res://resources/sprites/orc1/orc1_attack_full.png" id="1_ag7g8"]
-[ext_resource type="Script" uid="uid://ppt0qcpqarme" path="res://assets/orc_1.gd" id="1_wwnpu"]
+[ext_resource type="Script" uid="uid://ppt0qcpqarme" path="res://assets/script/enemy.gd" id="1_wwnpu"]
 [ext_resource type="Texture2D" uid="uid://c57nqget5t8iy" path="res://resources/sprites/orc1/orc1_idle_full.png" id="2_ug7bh"]
 [ext_resource type="Texture2D" uid="uid://qcxhlp6wjafj" path="res://resources/sprites/orc1/orc1_run_full.png" id="3_ug7bh"]
 
@@ -635,6 +635,7 @@ size = Vector2(16, 7)
 radius = 76.00658
 
 [node name="Orc_1" type="CharacterBody2D" unique_id=1054063316 groups=["enemies"]]
+collision_layer = 4
 script = ExtResource("1_wwnpu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1645174496]
@@ -643,15 +644,21 @@ sprite_frames = SubResource("SpriteFrames_rp74u")
 animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=27587044]
+visible = false
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_ug7bh")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=1779753007]
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=142487618]
+visible = false
+collision_layer = 3
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1533907725]
-visible = false
+light_mask = 3
+visibility_layer = 3
 shape = SubResource("CircleShape2D_wwnpu")
 
 [node name="HurtBox" type="CollisionShape2D" parent="." unique_id=1815140148]
+visible = false

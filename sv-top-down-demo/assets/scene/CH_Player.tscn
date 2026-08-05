@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cx5mgwp7olhn2"]
 
-[ext_resource type="Script" uid="uid://4dxvcfxc1w35" path="res://assets/character_body_2d.gd" id="1_bliqt"]
+[ext_resource type="Script" uid="uid://4dxvcfxc1w35" path="res://assets/script/player.gd" id="1_bliqt"]
 [ext_resource type="Texture2D" uid="uid://b8v7a48fbh516" path="res://resources/sprites/FREE_Adventurer 2D Pixel Art/Sprites/IDLE/idle_down.png" id="1_ifgln"]
 [ext_resource type="Texture2D" uid="uid://831ho8ajmrv3" path="res://resources/sprites/FREE_Adventurer 2D Pixel Art/Sprites/IDLE/idle_left.png" id="2_2ld43"]
 [ext_resource type="Texture2D" uid="uid://db8womv1uoqbq" path="res://resources/sprites/FREE_Adventurer 2D Pixel Art/Sprites/ATTACK 2/attack2_down.png" id="2_esiyi"]
@@ -1017,6 +1017,7 @@ size = Vector2(43, 22)
 size = Vector2(44, 20)
 
 [node name="Player" type="CharacterBody2D" unique_id=1444117095 groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_bliqt")
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=991897577]
@@ -1038,15 +1039,18 @@ zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394386328]
+visible = false
 position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_bliqt")
 
 [node name="HurtBox" type="CollisionShape2D" parent="." unique_id=658272922]
+visible = false
 position = Vector2(-0.25, 2.25)
 shape = SubResource("RectangleShape2D_gtmll")
 disabled = true
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=2675836]
+visible = false
 
 [node name="HitBox_right" type="CollisionShape2D" parent="AttackArea" unique_id=2029295885]
 position = Vector2(-28, 3)

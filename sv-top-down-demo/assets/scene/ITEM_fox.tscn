@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8evcae0qc0l6"]
 
-[ext_resource type="Script" uid="uid://b4rq2b38d8m8m" path="res://assets/fox.gd" id="1_1b4l4"]
+[ext_resource type="Script" uid="uid://b4rq2b38d8m8m" path="res://assets/script/fox.gd" id="1_1b4l4"]
 [ext_resource type="Texture2D" uid="uid://dms5e6pc5aht0" path="res://resources/sprites/Red Panda Sprite Sheet.png" id="1_nyviw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nyviw"]
