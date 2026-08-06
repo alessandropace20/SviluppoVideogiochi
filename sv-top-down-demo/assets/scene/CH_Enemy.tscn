@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://ppt0qcpqarme" path="res://assets/script/enemy.gd" id="1_wwnpu"]
 [ext_resource type="Texture2D" uid="uid://c57nqget5t8iy" path="res://resources/sprites/orc1/orc1_idle_full.png" id="2_ug7bh"]
 [ext_resource type="Texture2D" uid="uid://qcxhlp6wjafj" path="res://resources/sprites/orc1/orc1_run_full.png" id="3_ug7bh"]
+[ext_resource type="Texture2D" uid="uid://vb64r0y72syi" path="res://resources/sprites/STATUS_BASE.png" id="5_0ljqv"]
+[ext_resource type="Texture2D" uid="uid://dp0q4b445mjku" path="res://resources/sprites/STATUS_CONTORNO.png" id="6_dk5e7"]
+[ext_resource type="Texture2D" uid="uid://cpinxlqhj62bf" path="res://resources/sprites/HEALTH_TEXTURE.png" id="7_wsvm7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhjb7"]
 atlas = ExtResource("1_ag7g8")
@@ -662,3 +665,15 @@ shape = SubResource("CircleShape2D_wwnpu")
 
 [node name="HurtBox" type="CollisionShape2D" parent="." unique_id=1815140148]
 visible = false
+
+[node name="UI" type="Node2D" parent="." unique_id=885422498]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=162529635]
+texture_filter = 1
+offset_left = -16.0
+offset_top = -44.0
+offset_right = 16.0
+offset_bottom = -12.0
+texture_under = ExtResource("5_0ljqv")
+texture_over = ExtResource("6_dk5e7")
+texture_progress = ExtResource("7_wsvm7")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bco1kftm54hqg"]
 
 [ext_resource type="Texture2D" uid="uid://c36wuepe8fh6n" path="res://resources/sprites/Health.png" id="1_iph0b"]
-[ext_resource type="Script" uid="uid://c6ujid3tducmd" path="res://assets/scene/item_health.gd" id="1_ngbvd"]
+[ext_resource type="Script" uid="uid://c6ujid3tducmd" path="res://assets/script/item_health.gd" id="1_ngbvd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bn0sn"]
 atlas = ExtResource("1_iph0b")
@@ -92,7 +92,8 @@ texture_filter = 1
 position = Vector2(-1.1920929e-07, 1.1920929e-07)
 scale = Vector2(0.625, 0.625)
 sprite_frames = SubResource("SpriteFrames_scexw")
-frame_progress = 0.1499039
+frame = 4
+frame_progress = 0.022793386
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=940934547]
 shape = SubResource("CircleShape2D_ngbvd")

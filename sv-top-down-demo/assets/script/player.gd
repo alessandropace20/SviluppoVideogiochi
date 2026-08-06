@@ -110,6 +110,6 @@ func take_damage(damage: int) -> void:
 	health -= damage
 	if health < 0:
 		health = 0
-	print(name, " ha subito ", damage, " danni. HP: ", health)
+	print("Il giocatore ha subito ", damage, " danni. HP: ", health)
 	if health == 0:
 		print("Il giocatore è morto")
