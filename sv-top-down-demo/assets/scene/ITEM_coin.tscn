@@ -174,15 +174,17 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfx1h"]
 radius = 8.0
 
-[node name="Area2D" type="Area2D" unique_id=1912869730]
+[node name="Coin" type="Area2D" unique_id=1912869730]
 collision_layer = 10
 collision_mask = 2
 script = ExtResource("1_6eyml")
 
-[node name="coin" type="AnimatedSprite2D" parent="." unique_id=1901695061]
+[node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1901695061]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hlamh")
-animation = &"rotate"
+animation = &"plus"
+frame = 15
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696049432]
 shape = SubResource("CircleShape2D_lfx1h")

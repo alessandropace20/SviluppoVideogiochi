@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var sprite: AnimatedSprite2D = $coin
+@onready var sprite: AnimatedSprite2D = $Coin
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:

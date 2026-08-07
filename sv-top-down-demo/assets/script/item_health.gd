@@ -1,16 +1,13 @@
-extends Node2D
+extends Area2D
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $Health
+@onready var collision: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	sprite.play("default")
+	body_entered.connect(_on_body_entered)
 
-
-func _on_body_entered(body: Node) -> void:
-	if body.name != "character_body_2d":
-		return
-
-	# TODO: Incrementare il contatore delle monete
-	# health += 1
-
-	queue_free()
+func _on_body_entered(body: Node2D) -> void:
+	print("Body entered: ", body.name, " | gruppi: ", body.get_groups())
+	collision.set_deferred("disabled", true)
+	sprite.play("plus")
