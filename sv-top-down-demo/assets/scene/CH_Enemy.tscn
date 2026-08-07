@@ -725,13 +725,14 @@ size = Vector2(10, 20)
 [node name="Orc_1" type="CharacterBody2D" unique_id=1054063316 groups=["enemies"]]
 collision_layer = 4
 script = ExtResource("1_wwnpu")
+patrol_points = Array[Vector2]([Vector2(0, 0), Vector2(50, 0)])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1645174496]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_rp74u")
-animation = &"die"
-frame = 8
-frame_progress = 1.0
+animation = &"idle_down"
+frame = 1
+frame_progress = 0.28233355
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=27587044]
 visible = false

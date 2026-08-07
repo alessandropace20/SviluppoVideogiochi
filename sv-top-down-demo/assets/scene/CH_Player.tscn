@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://buext6b7ljnwq" path="res://resources/sprites/death.png" id="11_x6xha"]
 [ext_resource type="Script" uid="uid://b2gt1e8cbom04" path="res://assets/script/HurtBox.gd" id="19_mvwrq"]
 [ext_resource type="Script" uid="uid://c8k15j2wrvkjn" path="res://assets/script/HitBox.gd" id="20_x6xha"]
+[ext_resource type="Texture2D" uid="uid://c5w4c4l2ogi2v" path="res://resources/sprites/marker.png" id="21_qbb73"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2sc1"]
 atlas = ExtResource("2_esiyi")
@@ -1132,6 +1133,42 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng4w2"]
+atlas = ExtResource("21_qbb73")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mryv"]
+atlas = ExtResource("21_qbb73")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jshv6"]
+atlas = ExtResource("21_qbb73")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3acj7"]
+atlas = ExtResource("21_qbb73")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3eivb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng4w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mryv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jshv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3acj7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bliqt"]
 size = Vector2(14.5, 6)
 
@@ -1167,7 +1204,12 @@ texture_filter = 1
 position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.1125001, 1.1125)
 sprite_frames = SubResource("SpriteFrames_tud5j")
-animation = &"die"
+animation = &"idle_down"
+
+[node name="Marker" type="AnimatedSprite2D" parent="." unique_id=145426601]
+texture_filter = 1
+position = Vector2(0, -29)
+sprite_frames = SubResource("SpriteFrames_3eivb")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=245258795]
 zoom = Vector2(2.5, 2.5)
@@ -1179,7 +1221,6 @@ position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_bliqt")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1773446904]
-visible = false
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("19_mvwrq")

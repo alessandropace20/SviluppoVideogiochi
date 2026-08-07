@@ -5,6 +5,12 @@ extends CharacterBody2D
 @export var attack_cooldown := 1.0
 @export var max_health := 50
 
+# --- Patrol ---
+@export var patrol_points: Array[Vector2] = []  # offset relativi alla posizione iniziale
+@export var patrol_speed := 20.0
+@export var patrol_wait_time := 2.0
+@export var patrol_point_threshold := 4.0  # distanza entro cui consideriamo "raggiunto" il punto
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea
 @onready var health_bar: TextureProgressBar = $UI/TextureProgressBar
@@ -29,24 +35,35 @@ var health: int
 
 var health_bar_timer: Timer
 
+# --- Stato patrol ---
+var start_position: Vector2
+var current_patrol_index := 0
+var is_patrol_waiting := false
+var patrol_wait_timer: Timer
+
 func _ready():
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
 	health_bar.visible = false
 
-	# Timer per nascondere la barra dopo 3 secondi dall'ultimo colpo
 	health_bar_timer = Timer.new()
 	health_bar_timer.one_shot = true
 	health_bar_timer.wait_time = HEALTH_BAR_VISIBLE_TIME
 	add_child(health_bar_timer)
 	health_bar_timer.timeout.connect(_on_health_bar_timer_timeout)
 
+	patrol_wait_timer = Timer.new()
+	patrol_wait_timer.one_shot = true
+	add_child(patrol_wait_timer)
+	patrol_wait_timer.timeout.connect(_on_patrol_wait_timeout)
+
+	start_position = global_position
+
 	for hb in hitboxes.values():
 		hb.disabled = true
 	sprite.play("idle_down")
 	sprite.frame_changed.connect(_on_frame_changed)
-	sprite.animation_finished.connect(_on_animation_finished)
 	detection_area.body_entered.connect(_on_detection_area_body_entered)
 	detection_area.body_exited.connect(_on_detection_area_body_exited)
 
@@ -55,10 +72,7 @@ func _physics_process(delta):
 		return
 
 	if player == null:
-		velocity = Vector2.ZERO
-		if not is_attacking:
-			sprite.play("idle_" + facing)
-		move_and_slide()
+		process_patrol()
 		return
 
 	var direction = (player.global_position - global_position).normalized()
@@ -72,13 +86,47 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	elif distance > attack_distance:
 		velocity = direction * speed
-		sprite.play("idle_" + facing)
+		sprite.play("idle_" + facing) # o "run_" + facing
 	else:
 		velocity = Vector2.ZERO
 		if can_attack:
 			attack()
 
 	move_and_slide()
+
+func process_patrol() -> void:
+	if patrol_points.is_empty():
+		velocity = Vector2.ZERO
+		sprite.play("idle_" + facing)
+		move_and_slide()
+		return
+
+	if is_patrol_waiting:
+		velocity = Vector2.ZERO
+		sprite.play("idle_" + facing)
+		move_and_slide()
+		return
+
+	var target = start_position + patrol_points[current_patrol_index]
+	var direction = (target - global_position).normalized()
+	var distance = global_position.distance_to(target)
+
+	if distance <= patrol_point_threshold:
+		# Punto raggiunto: ferma, aspetta, poi passa al prossimo
+		velocity = Vector2.ZERO
+		sprite.play("idle_" + facing)
+		is_patrol_waiting = true
+		patrol_wait_timer.start(patrol_wait_time)
+	else:
+		update_facing(direction)
+		velocity = direction * patrol_speed
+		sprite.play("idle_" + facing) # oppure "run_" + facing se disponibile
+
+	move_and_slide()
+
+func _on_patrol_wait_timeout() -> void:
+	is_patrol_waiting = false
+	current_patrol_index = (current_patrol_index + 1) % patrol_points.size()
 
 func enable_hitbox(direction: String) -> void:
 	for dir in hitboxes.keys():
@@ -110,21 +158,18 @@ func _on_frame_changed() -> void:
 func take_damage(damage: int) -> void:
 	if is_dead:
 		return
-
 	health -= damage
 	if health < 0:
 		health = 0
 	update_health_bar()
-
 	show_health_bar()
-
 	print("Il nemico ha subito ", damage, " danni. HP: ", health)
 	if health == 0:
 		die()
 
 func show_health_bar() -> void:
 	health_bar.visible = true
-	health_bar_timer.start(HEALTH_BAR_VISIBLE_TIME)  # riparte da 3s ad ogni colpo
+	health_bar_timer.start(HEALTH_BAR_VISIBLE_TIME)
 
 func _on_health_bar_timer_timeout() -> void:
 	health_bar.visible = false
@@ -139,11 +184,7 @@ func die() -> void:
 	velocity = Vector2.ZERO
 	disable_all_hitboxes()
 	health_bar.visible = false
-	sprite.play("die")
-
-func _on_animation_finished() -> void:
-	if is_dead and sprite.animation.begins_with("die"):
-		queue_free()
+	sprite.stop()
 
 func update_facing(dir):
 	if abs(dir.x) > abs(dir.y):
