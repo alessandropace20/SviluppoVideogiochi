@@ -29,8 +29,9 @@ func _ready() -> void:
 	health = max_health
 	sprite.animation_finished.connect(_on_animation_finished)
 	sprite.frame_changed.connect(_on_frame_changed)
+	
 	for hb in hitboxes.values():
-		hb.disabled = true
+		hb.set_deferred("disabled", true)
 
 func _physics_process(delta):
 	if is_dead:
@@ -68,11 +69,11 @@ func _on_frame_changed() -> void:
 
 func enable_hitbox(direction: String) -> void:
 	for dir in hitboxes.keys():
-		hitboxes[dir].disabled = (dir != direction)
+		hitboxes[dir].set_deferred("disabled", dir != direction)
 
 func disable_all_hitboxes() -> void:
 	for hb in hitboxes.values():
-		hb.disabled = true
+		hb.set_deferred("disabled", true)
 
 func _on_animation_finished():
 	if is_dead and sprite.animation.begins_with("die"):

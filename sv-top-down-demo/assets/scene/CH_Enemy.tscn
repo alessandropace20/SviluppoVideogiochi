@@ -867,14 +867,12 @@ frame = 3
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=27587044]
-visible = false
 position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_ug7bh")
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=1779753007]
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=142487618]
-visible = false
 collision_layer = 3
 collision_mask = 7
 
@@ -884,7 +882,6 @@ visibility_layer = 3
 shape = SubResource("CircleShape2D_wwnpu")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=336726075]
-visible = false
 collision_layer = 64
 collision_mask = 8
 script = ExtResource("5_wsvm7")
@@ -906,7 +903,6 @@ texture_over = ExtResource("6_dk5e7")
 texture_progress = ExtResource("7_wsvm7")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1718035823]
-visible = false
 collision_layer = 16
 collision_mask = 32
 script = ExtResource("8_dk5e7")
@@ -924,5 +920,5 @@ position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_d4gx1")
 
 [node name="HitBox_left" type="CollisionShape2D" parent="AttackArea" unique_id=843111794]
-position = Vector2(-25, 0)
+position = Vector2(-20, -1)
 shape = SubResource("RectangleShape2D_l5fkn")

@@ -51,7 +51,7 @@ func _ready():
 	hurt_timer = _make_timer(_on_hurt_timeout)
 
 	for hb in hitboxes.values():
-		hb.disabled = true
+		hb.set_deferred("disabled", true)
 
 	sprite.play("idle_down")
 	sprite.frame_changed.connect(_on_frame_changed)
@@ -135,11 +135,11 @@ func _finish_attack() -> void:
 
 func enable_hitbox(direction: String) -> void:
 	for dir in hitboxes.keys():
-		hitboxes[dir].disabled = (dir != direction)
+		hitboxes[dir].set_deferred("disabled", dir != direction)
 
 func disable_all_hitboxes() -> void:
 	for hb in hitboxes.values():
-		hb.disabled = true
+		hb.set_deferred("disabled", true)
 
 # --- HURT ---
 
