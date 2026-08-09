@@ -96,7 +96,7 @@ func update_animation(direction: Vector2) -> void:
 		facing = "down" if direction.y > 0 else "up"
 	sprite.play("run_" + facing)
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, source_position: Vector2 = global_position) -> void:
 	if is_dead:
 		return
 

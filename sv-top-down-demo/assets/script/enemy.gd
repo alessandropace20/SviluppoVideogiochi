@@ -1,15 +1,15 @@
 extends CharacterBody2D
+
 @export var speed := 30.0
-@export var attack_distance := 30.0
+@export var attack_range := 30.0
 @export var attack_damage := 10
 @export var attack_cooldown := 1.0
 @export var max_health := 50
+@export var reaction_time := 0.3
 
-# --- Patrol ---
-@export var patrol_points: Array[Vector2] = []  # offset relativi alla posizione iniziale
-@export var patrol_speed := 20.0
-@export var patrol_wait_time := 2.0
-@export var patrol_point_threshold := 4.0  # distanza entro cui consideriamo "raggiunto" il punto
+@export var hurt_duration := 0.3
+@export var knockback_strength := 80.0
+@export var knockback_friction := 600.0  # quanto velocemente il knockback rallenta
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea
@@ -26,20 +26,18 @@ const ACTIVE_FRAME := 1
 const END_FRAME := 3
 const HEALTH_BAR_VISIBLE_TIME := 3.0
 
+enum State { IDLE, CHASE, ATTACK, HURT, DEAD }
+var state: State = State.IDLE
+
 var player: CharacterBody2D = null
 var facing := "down"
-var can_attack := true
-var is_attacking := false
-var is_dead := false
 var health: int
+var knockback_velocity := Vector2.ZERO
 
 var health_bar_timer: Timer
-
-# --- Stato patrol ---
-var start_position: Vector2
-var current_patrol_index := 0
-var is_patrol_waiting := false
-var patrol_wait_timer: Timer
+var reaction_timer: Timer
+var attack_cooldown_timer: Timer
+var hurt_timer: Timer
 
 func _ready():
 	health = max_health
@@ -47,86 +45,93 @@ func _ready():
 	health_bar.value = health
 	health_bar.visible = false
 
-	health_bar_timer = Timer.new()
-	health_bar_timer.one_shot = true
-	health_bar_timer.wait_time = HEALTH_BAR_VISIBLE_TIME
-	add_child(health_bar_timer)
-	health_bar_timer.timeout.connect(_on_health_bar_timer_timeout)
-
-	patrol_wait_timer = Timer.new()
-	patrol_wait_timer.one_shot = true
-	add_child(patrol_wait_timer)
-	patrol_wait_timer.timeout.connect(_on_patrol_wait_timeout)
-
-	start_position = global_position
+	health_bar_timer = _make_timer(_on_health_bar_timer_timeout)
+	reaction_timer = _make_timer(_on_reaction_timeout)
+	attack_cooldown_timer = _make_timer(func(): pass)
+	hurt_timer = _make_timer(_on_hurt_timeout)
 
 	for hb in hitboxes.values():
 		hb.disabled = true
+
 	sprite.play("idle_down")
 	sprite.frame_changed.connect(_on_frame_changed)
-	detection_area.body_entered.connect(_on_detection_area_body_entered)
-	detection_area.body_exited.connect(_on_detection_area_body_exited)
+
+	if not detection_area.body_entered.is_connected(_on_detection_area_body_entered):
+		detection_area.body_entered.connect(_on_detection_area_body_entered)
+	if not detection_area.body_exited.is_connected(_on_detection_area_body_exited):
+		detection_area.body_exited.connect(_on_detection_area_body_exited)
+
+func _make_timer(callback: Callable) -> Timer:
+	var t := Timer.new()
+	t.one_shot = true
+	add_child(t)
+	t.timeout.connect(callback)
+	return t
+
+func change_state(new_state: State) -> void:
+	if state == new_state:
+		return
+	state = new_state
 
 func _physics_process(delta):
-	if is_dead:
-		return
+	match state:
+		State.DEAD:
+			return
+		State.IDLE:
+			velocity = Vector2.ZERO
+			sprite.play("idle_" + facing)
+			move_and_slide()
+		State.CHASE:
+			_process_chase()
+		State.ATTACK:
+			velocity = Vector2.ZERO
+			move_and_slide()
+		State.HURT:
+			_process_hurt(delta)
 
+func _process_chase() -> void:
 	if player == null:
-		process_patrol()
+		change_state(State.IDLE)
 		return
 
 	var direction = (player.global_position - global_position).normalized()
-
-	if not is_attacking:
-		update_facing(direction)
-
+	update_facing(direction)
 	var distance = global_position.distance_to(player.global_position)
 
-	if is_attacking:
-		velocity = Vector2.ZERO
-	elif distance > attack_distance:
-		velocity = direction * speed
-		sprite.play("idle_" + facing) # o "run_" + facing
-	else:
-		velocity = Vector2.ZERO
-		if can_attack:
-			attack()
-
-	move_and_slide()
-
-func process_patrol() -> void:
-	if patrol_points.is_empty():
-		velocity = Vector2.ZERO
-		sprite.play("idle_" + facing)
-		move_and_slide()
+	if distance <= attack_range and attack_cooldown_timer.is_stopped():
+		start_attack()
 		return
 
-	if is_patrol_waiting:
-		velocity = Vector2.ZERO
-		sprite.play("idle_" + facing)
-		move_and_slide()
-		return
-
-	var target = start_position + patrol_points[current_patrol_index]
-	var direction = (target - global_position).normalized()
-	var distance = global_position.distance_to(target)
-
-	if distance <= patrol_point_threshold:
-		# Punto raggiunto: ferma, aspetta, poi passa al prossimo
-		velocity = Vector2.ZERO
-		sprite.play("idle_" + facing)
-		is_patrol_waiting = true
-		patrol_wait_timer.start(patrol_wait_time)
-	else:
-		update_facing(direction)
-		velocity = direction * patrol_speed
-		sprite.play("idle_" + facing) # oppure "run_" + facing se disponibile
-
+	velocity = direction * speed
+	sprite.play("idle_" + facing) # o "run_" + facing se disponibile
 	move_and_slide()
 
-func _on_patrol_wait_timeout() -> void:
-	is_patrol_waiting = false
-	current_patrol_index = (current_patrol_index + 1) % patrol_points.size()
+func start_attack() -> void:
+	change_state(State.ATTACK)
+	attack_area.damage = attack_damage
+	sprite.play("attack_" + facing)
+
+func _on_frame_changed() -> void:
+	if state != State.ATTACK or not sprite.animation.begins_with("attack"):
+		return
+	if sprite.frame == ACTIVE_FRAME:
+		enable_hitbox(facing)
+	elif sprite.frame == END_FRAME:
+		disable_all_hitboxes()
+	elif sprite.frame == sprite.sprite_frames.get_frame_count(sprite.animation) - 1:
+		_finish_attack()
+
+func _finish_attack() -> void:
+	disable_all_hitboxes()
+	attack_cooldown_timer.start(attack_cooldown)
+
+	if state == State.DEAD or state == State.HURT:
+		return
+
+	if player != null:
+		change_state(State.CHASE)
+	else:
+		change_state(State.IDLE)
 
 func enable_hitbox(direction: String) -> void:
 	for dir in hitboxes.keys():
@@ -136,36 +141,53 @@ func disable_all_hitboxes() -> void:
 	for hb in hitboxes.values():
 		hb.disabled = true
 
-func attack():
-	is_attacking = true
-	can_attack = false
-	attack_area.damage = attack_damage
-	sprite.play("attack_" + facing)
-	await sprite.animation_finished
-	is_attacking = false
-	disable_all_hitboxes()
-	await get_tree().create_timer(attack_cooldown).timeout
-	can_attack = true
+# --- HURT ---
 
-func _on_frame_changed() -> void:
-	if not is_attacking or not sprite.animation.begins_with("attack"):
+func _process_hurt(delta) -> void:
+	# Il knockback si smorza gradualmente con un attrito, invece di sparire di colpo
+	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
+	velocity = knockback_velocity
+	move_and_slide()
+
+func enter_hurt(source_position: Vector2) -> void:
+	if state == State.DEAD:
 		return
-	if sprite.frame == ACTIVE_FRAME:
-		enable_hitbox(facing)
-	elif sprite.frame == END_FRAME:
-		disable_all_hitboxes()
 
-func take_damage(damage: int) -> void:
-	if is_dead:
+	# Interrompe qualunque attacco in corso, disattivando subito la hitbox
+	disable_all_hitboxes()
+
+	var knockback_dir = (global_position - source_position).normalized()
+	knockback_velocity = knockback_dir * knockback_strength
+
+	change_state(State.HURT)
+	sprite.play("hurt_" + facing)
+	hurt_timer.start(hurt_duration)
+
+func _on_hurt_timeout() -> void:
+	if state == State.DEAD:
+		return
+	knockback_velocity = Vector2.ZERO
+	if player != null:
+		change_state(State.CHASE)
+	else:
+		change_state(State.IDLE)
+
+# --- Danno / vita ---
+
+func take_damage(damage: int, source_position: Vector2 = global_position) -> void:
+	if state == State.DEAD:
 		return
 	health -= damage
 	if health < 0:
 		health = 0
 	update_health_bar()
 	show_health_bar()
-	print("Il nemico ha subito ", damage, " danni. HP: ", health)
+	print(name, " ha subito ", damage, " danni. HP: ", health)
+
 	if health == 0:
 		die()
+	else:
+		enter_hurt(source_position)
 
 func show_health_bar() -> void:
 	health_bar.visible = true
@@ -178,13 +200,12 @@ func update_health_bar() -> void:
 	health_bar.value = health
 
 func die() -> void:
-	is_dead = true
-	is_attacking = false
-	can_attack = false
+	change_state(State.DEAD)
 	velocity = Vector2.ZERO
+	knockback_velocity = Vector2.ZERO
 	disable_all_hitboxes()
 	health_bar.visible = false
-	sprite.stop()
+	sprite.play("die") # o sprite.stop() se preferisci il freeze silenzioso
 
 func update_facing(dir):
 	if abs(dir.x) > abs(dir.y):
@@ -193,8 +214,16 @@ func update_facing(dir):
 		facing = "down" if dir.y > 0 else "up"
 
 func _on_detection_area_body_entered(body):
-	if body.is_in_group("player"):
-		player = body
+	if not body.is_in_group("player"):
+		return
+	player = body
+	if state == State.DEAD or state == State.ATTACK or state == State.HURT:
+		return
+	reaction_timer.start(reaction_time)
+
+func _on_reaction_timeout() -> void:
+	if player != null and state != State.DEAD and state != State.ATTACK and state != State.HURT:
+		change_state(State.CHASE)
 
 func _on_detection_area_body_exited(body):
 	if body == player:

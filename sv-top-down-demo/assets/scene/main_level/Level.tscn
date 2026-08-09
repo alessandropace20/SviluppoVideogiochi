@@ -6511,7 +6511,7 @@ sources/1 = SubResource("TileSetAtlasSource_324ap")
 sources/2 = SubResource("TileSetAtlasSource_qk6p0")
 sources/3 = SubResource("TileSetAtlasSource_7ucfo")
 
-[node name="Level1" type="Node2D" unique_id=802420485]
+[node name="LevelDemo" type="Node2D" unique_id=802420485]
 
 [node name="Ambient" type="Node2D" parent="." unique_id=69481302]
 
@@ -6588,7 +6588,7 @@ tile_set = SubResource("TileSet_lx420")
 
 [node name="Items&collectable" type="Node2D" parent="Ambient" unique_id=2054535286]
 
-[node name="Coin" parent="Ambient/Items&collectable" unique_id=1772581051 instance=ExtResource("12_hw5ue")]
+[node name="Coin1" parent="Ambient/Items&collectable" unique_id=1772581051 instance=ExtResource("12_hw5ue")]
 position = Vector2(264, 438)
 
 [node name="Coin2" parent="Ambient/Items&collectable" unique_id=288084717 instance=ExtResource("12_hw5ue")]
@@ -6614,6 +6614,9 @@ position = Vector2(-50, -60)
 
 [node name="Coin9" parent="Ambient/Items&collectable" unique_id=58753413 instance=ExtResource("12_hw5ue")]
 position = Vector2(161, -309)
+
+[node name="Coin10" parent="Ambient/Items&collectable" unique_id=627454911 instance=ExtResource("12_hw5ue")]
+position = Vector2(357, -379)
 
 [node name="Health" parent="Ambient/Items&collectable" unique_id=1437314971 instance=ExtResource("13_wmw7l")]
 position = Vector2(-351, 184)
@@ -6663,35 +6666,38 @@ motion_mode = 1
 [node name="Orc_1" parent="HostileMobs" unique_id=1054063316 instance=ExtResource("11_ikjtx")]
 position = Vector2(38, 448)
 
-[node name="Orc_2" parent="HostileMobs" unique_id=946902950 instance=ExtResource("11_ikjtx")]
-position = Vector2(-345, 225)
+[node name="Orc_2" parent="HostileMobs" unique_id=1417840180 instance=ExtResource("11_ikjtx")]
+position = Vector2(-165, 562)
 
-[node name="Orc_3" parent="HostileMobs" unique_id=118699238 instance=ExtResource("11_ikjtx")]
-position = Vector2(-217, 548)
+[node name="Orc_3" parent="HostileMobs" unique_id=668149867 instance=ExtResource("11_ikjtx")]
+position = Vector2(-326, 225)
 
-[node name="Orc_4" parent="HostileMobs" unique_id=978543185 instance=ExtResource("11_ikjtx")]
-position = Vector2(-179, 117)
+[node name="Orc_4" parent="HostileMobs" unique_id=347693883 instance=ExtResource("11_ikjtx")]
+position = Vector2(-206, 149)
 
-[node name="Orc_5" parent="HostileMobs" unique_id=1857807403 instance=ExtResource("11_ikjtx")]
-position = Vector2(339, 72)
+[node name="Orc_5" parent="HostileMobs" unique_id=321058206 instance=ExtResource("11_ikjtx")]
+position = Vector2(-260, -111)
 
-[node name="Orc_6" parent="HostileMobs" unique_id=398714900 instance=ExtResource("11_ikjtx")]
-position = Vector2(309, 250)
+[node name="Orc_6" parent="HostileMobs" unique_id=1991180692 instance=ExtResource("11_ikjtx")]
+position = Vector2(-87, -112)
 
-[node name="Orc_7" parent="HostileMobs" unique_id=510325564 instance=ExtResource("11_ikjtx")]
-position = Vector2(201, -140)
+[node name="Orc_7" parent="HostileMobs" unique_id=311486127 instance=ExtResource("11_ikjtx")]
+position = Vector2(-159, -342)
 
-[node name="Orc_8" parent="HostileMobs" unique_id=1755070269 instance=ExtResource("11_ikjtx")]
-position = Vector2(-255, -130)
+[node name="Orc_8" parent="HostileMobs" unique_id=2074101021 instance=ExtResource("11_ikjtx")]
+position = Vector2(66, -348)
 
-[node name="Orc_9" parent="HostileMobs" unique_id=554977915 instance=ExtResource("11_ikjtx")]
-position = Vector2(-88, -130)
+[node name="Orc_9" parent="HostileMobs" unique_id=1349841239 instance=ExtResource("11_ikjtx")]
+position = Vector2(206, -144)
 
-[node name="Orc_10" parent="HostileMobs" unique_id=2017616056 instance=ExtResource("11_ikjtx")]
-position = Vector2(-183, -353)
+[node name="Orc_10" parent="HostileMobs" unique_id=838401956 instance=ExtResource("11_ikjtx")]
+position = Vector2(198, 116)
 
-[node name="Orc_11" parent="HostileMobs" unique_id=2120338899 instance=ExtResource("11_ikjtx")]
-position = Vector2(76, -305)
+[node name="Orc_11" parent="HostileMobs" unique_id=1635424485 instance=ExtResource("11_ikjtx")]
+position = Vector2(346, 113)
+
+[node name="Orc_12" parent="HostileMobs" unique_id=1422911919 instance=ExtResource("11_ikjtx")]
+position = Vector2(317, 277)
 
 [node name="Perspective" type="Node2D" parent="." unique_id=2106575986]
 

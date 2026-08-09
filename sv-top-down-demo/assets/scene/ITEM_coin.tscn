@@ -182,9 +182,7 @@ script = ExtResource("1_6eyml")
 [node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1901695061]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_hlamh")
-animation = &"plus"
-frame = 15
-frame_progress = 1.0
+animation = &"rotate"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696049432]
 shape = SubResource("CircleShape2D_lfx1h")
