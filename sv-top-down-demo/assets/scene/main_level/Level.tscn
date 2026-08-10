@@ -6688,6 +6688,36 @@ position = Vector2(-98, -120)
 [node name="SpawnPoint_7" type="Marker2D" parent="HostileMobs" unique_id=2053073295]
 position = Vector2(-163, -320)
 
+[node name="SpawnPoint_8" type="Marker2D" parent="HostileMobs" unique_id=1377333949]
+position = Vector2(67, -336)
+
+[node name="SpawnPoint_9" type="Marker2D" parent="HostileMobs" unique_id=2006701521]
+position = Vector2(282, -339)
+
+[node name="SpawnPoint_10" type="Marker2D" parent="HostileMobs" unique_id=1158591080]
+position = Vector2(164, -160)
+
+[node name="SpawnPoint_11" type="Marker2D" parent="HostileMobs" unique_id=1633050392]
+position = Vector2(200, 70)
+
+[node name="SpawnPoint_12" type="Marker2D" parent="HostileMobs" unique_id=1612940502]
+position = Vector2(334, 68)
+
+[node name="SpawnPoint_13" type="Marker2D" parent="HostileMobs" unique_id=730879015]
+position = Vector2(310, 221)
+
+[node name="SpawnPoint_14" type="Marker2D" parent="HostileMobs" unique_id=233075451]
+position = Vector2(310, 221)
+
+[node name="SpawnPoint_15" type="Marker2D" parent="HostileMobs" unique_id=131521417]
+position = Vector2(114, 222)
+
+[node name="SpawnPoint_16" type="Marker2D" parent="HostileMobs" unique_id=1770993898]
+position = Vector2(299, 682)
+
+[node name="SpawnPoint_17" type="Marker2D" parent="HostileMobs" unique_id=1375702005]
+position = Vector2(-154, 573)
+
 [node name="Perspective" type="Node2D" parent="." unique_id=2106575986]
 
 [node name="Shadows_On_From_Walls" type="TileMapLayer" parent="Perspective" unique_id=1615062558]

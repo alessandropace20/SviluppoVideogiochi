@@ -1,22 +1,14 @@
 [gd_scene format=3 uid="uid://duprcktbuey8f"]
 
 [ext_resource type="Texture2D" uid="uid://cj7lao106qnwu" path="res://resources/sprites/others/UI-Title-screen2.png" id="1_pll7j"]
-[ext_resource type="Texture2D" uid="uid://coshnff5chmbc" path="res://resources/sprites/others/UI-Menu and Buttons.png" id="2_44x3p"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_44x3p"]
-atlas = ExtResource("1_pll7j")
-region = Rect2(240, 0, 48, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_w0pqk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_44x3p")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://ch4vajgbwsj4g" path="res://resources/sprites/others/BackGround-NEW.png" id="2_agld2"]
+[ext_resource type="Texture2D" uid="uid://bx81yklll3pmd" path="res://resources/sprites/others/PLAY-Button.png" id="2_n166a"]
+[ext_resource type="Texture2D" uid="uid://dx8sw57vu4dr5" path="res://resources/sprites/others/LOAD_Button.png" id="2_w0pqk"]
+[ext_resource type="Script" uid="uid://jebrwtl6vfri" path="res://assets/script/controls.gd" id="3_gio6m"]
+[ext_resource type="Texture2D" uid="uid://o5xumipogx12" path="res://resources/sprites/others/PLAY-Pressed-Button.png" id="3_h1s1j"]
+[ext_resource type="Texture2D" uid="uid://chbaxdfw13sfc" path="res://resources/sprites/others/LOAD-Pressed-Button.png.png" id="3_iq62q"]
+[ext_resource type="Texture2D" uid="uid://ds7av76sgr5wv" path="res://resources/sprites/others/QUIT-Button.png" id="6_gp614"]
+[ext_resource type="Texture2D" uid="uid://dcqq4qdlxn6up" path="res://resources/sprites/others/QUIT-Pressed-Button.png" id="7_agld2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iq62q"]
 atlas = ExtResource("1_pll7j")
@@ -33,109 +25,46 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0pqk"]
-atlas = ExtResource("2_44x3p")
-region = Rect2(96, 0, 48, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n166a"]
-atlas = ExtResource("2_44x3p")
-region = Rect2(144, 0, 48, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_h1s1j"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w0pqk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n166a")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h1s1j"]
-atlas = ExtResource("2_44x3p")
-region = Rect2(192, 0, 48, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gp614"]
-atlas = ExtResource("2_44x3p")
-region = Rect2(240, 0, 48, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_agld2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h1s1j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gp614")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gio6m"]
-atlas = ExtResource("2_44x3p")
-region = Rect2(480, 0, 48, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8g6fe"]
-atlas = ExtResource("2_44x3p")
-region = Rect2(528, 0, 48, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lva74"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gio6m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8g6fe")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_44x3p"]
-
 [node name="MainMenu" type="CanvasLayer" unique_id=679055312]
 
 [node name="Base" type="Node2D" parent="." unique_id=831866147]
 
-[node name="BackGround" type="AnimatedSprite2D" parent="Base" unique_id=1512110001]
-texture_filter = 1
-position = Vector2(576, 320)
-scale = Vector2(25.403265, 21.54285)
-sprite_frames = SubResource("SpriteFrames_w0pqk")
+[node name="Sprite2D" type="Sprite2D" parent="Base" unique_id=1438856455]
+position = Vector2(576, 328)
+scale = Vector2(1.2662611, 1.2662611)
+texture = ExtResource("2_agld2")
 
 [node name="Frame" type="AnimatedSprite2D" parent="Base" unique_id=1676372375]
 texture_filter = 1
-position = Vector2(568, 312)
-scale = Vector2(16.357534, 16.357534)
+position = Vector2(576, 328)
+scale = Vector2(15.871843, 16.357534)
 sprite_frames = SubResource("SpriteFrames_n166a")
 
-[node name="Controls" type="Node2D" parent="." unique_id=253380959]
+[node name="Controls" type="Control" parent="." unique_id=1116864222]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("3_gio6m")
 
-[node name="PlayButton" type="AnimatedSprite2D" parent="Controls" unique_id=1266013997]
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls" unique_id=1020620282]
 texture_filter = 1
-position = Vector2(576, 200)
-scale = Vector2(7.135445, 7.135445)
-sprite_frames = SubResource("SpriteFrames_h1s1j")
+layout_mode = 0
+offset_left = 448.0
+offset_top = 160.0
+offset_right = 496.0
+offset_bottom = 216.0
+scale = Vector2(5.3209767, 5.750387)
 
-[node name="OptionButton" type="AnimatedSprite2D" parent="Controls" unique_id=1187945457]
-texture_filter = 1
-position = Vector2(576.00006, 312)
-scale = Vector2(7.1243277, 7.1243277)
-sprite_frames = SubResource("SpriteFrames_agld2")
+[node name="PlayButton" type="TextureButton" parent="Controls/VBoxContainer" unique_id=1932213748]
+layout_mode = 2
+texture_normal = ExtResource("2_n166a")
+texture_pressed = ExtResource("3_h1s1j")
 
-[node name="ExitButton" type="AnimatedSprite2D" parent="Controls" unique_id=272677675]
-texture_filter = 1
-position = Vector2(576.00006, 424.00003)
-scale = Vector2(7.051594, 7.051594)
-sprite_frames = SubResource("SpriteFrames_lva74")
+[node name="LoadButton" type="TextureButton" parent="Controls/VBoxContainer" unique_id=388023648]
+layout_mode = 2
+texture_normal = ExtResource("2_w0pqk")
+texture_pressed = ExtResource("3_iq62q")
 
-[node name="LoadButton" type="AnimatedSprite2D" parent="Controls" unique_id=790115219]
-sprite_frames = SubResource("SpriteFrames_44x3p")
+[node name="QuitButton" type="TextureButton" parent="Controls/VBoxContainer" unique_id=547459843]
+layout_mode = 2
+texture_normal = ExtResource("6_gp614")
+texture_pressed = ExtResource("7_agld2")
