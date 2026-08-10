@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="SV_top_down_demo"
-run/main_scene="uid://ddo5xo7oalik8"
+run/main_scene="uid://b4g183kh0ppu"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://u644o81k7g3a"
+
+[autoload]
+
+EventBus="*uid://du3osbdtk33as"
 
 [display]
 

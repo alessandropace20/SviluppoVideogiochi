@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b4g183kh0ppu"]
+
+[ext_resource type="PackedScene" uid="uid://ddo5xo7oalik8" path="res://assets/scene/main_level/Level.tscn" id="1_tb8ar"]
+[ext_resource type="PackedScene" uid="uid://bstyon1lq203s" path="res://assets/scene/UI/ui.tscn" id="2_0nmyk"]
+
+[node name="Main" type="Node2D" unique_id=1135119149]
+
+[node name="LevelDemo" parent="." unique_id=802420485 instance=ExtResource("1_tb8ar")]
+position = Vector2(-2, -2)
+
+[node name="UI" parent="." unique_id=312769223 instance=ExtResource("2_0nmyk")]

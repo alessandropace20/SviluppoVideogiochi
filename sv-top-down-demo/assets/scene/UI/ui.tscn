@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bstyon1lq203s"]
+
+[ext_resource type="Texture2D" uid="uid://nl722g2yi4js" path="res://resources/sprites/others/New Piskel-3.png.png" id="1_u5q84"]
+[ext_resource type="Texture2D" uid="uid://dk1i5h0puthii" path="res://resources/sprites/others/New Piskel-1.png.png" id="2_sq44f"]
+[ext_resource type="Texture2D" uid="uid://dtg128vppkgar" path="res://resources/sprites/others/New Piskel-2.png.png" id="3_k7gqu"]
+[ext_resource type="Texture2D" uid="uid://bkjma8v3rln5a" path="res://resources/sprites/others/coin_over.png.png" id="4_k7gqu"]
+[ext_resource type="Script" uid="uid://cw3kii8gc7rcf" path="res://assets/scene/UI/life_bar.gd" id="4_pujoq"]
+[ext_resource type="Texture2D" uid="uid://bj511ym4wg77p" path="res://resources/sprites/others/coin_texture_base.png" id="5_pujoq"]
+[ext_resource type="Script" uid="uid://c7bdqn033vwad" path="res://assets/scene/UI/coin_bar.gd" id="7_g20ys"]
+[ext_resource type="PackedScene" uid="uid://duprcktbuey8f" path="res://assets/scene/UI/MainMenu.tscn" id="8_mxi72"]
+
+[node name="UI" type="CanvasLayer" unique_id=312769223]
+
+[node name="HUD" type="Node2D" parent="." unique_id=424444953]
+position = Vector2(0, -1.9999999)
+scale = Vector2(0.89970994, 0.89970994)
+
+[node name="LifeBar" type="TextureProgressBar" parent="HUD" unique_id=1478087818]
+texture_filter = 1
+offset_left = 21.0
+offset_top = 17.0
+offset_right = 149.0
+offset_bottom = 57.0
+scale = Vector2(2.5511634, 2.5511634)
+value = 100.0
+texture_under = ExtResource("1_u5q84")
+texture_over = ExtResource("2_sq44f")
+texture_progress = ExtResource("3_k7gqu")
+script = ExtResource("4_pujoq")
+
+[node name="CoinBar" type="TextureProgressBar" parent="HUD" unique_id=822501996]
+texture_filter = 1
+offset_left = 28.898193
+offset_top = 113.36987
+offset_right = 156.8982
+offset_bottom = 153.36986
+scale = Vector2(2.1695595, 2.1695595)
+texture_under = ExtResource("1_u5q84")
+texture_over = ExtResource("4_k7gqu")
+texture_progress = ExtResource("5_pujoq")
+tint_progress = Color(1, 1, 0, 1)
+script = ExtResource("7_g20ys")
+
+[node name="MainMenu" type="Node2D" parent="." unique_id=953551795]
+
+[node name="MainMenu" parent="MainMenu" unique_id=679055312 instance=ExtResource("8_mxi72")]
+
+[node name="PauseMenu" type="Node2D" parent="." unique_id=787598671]

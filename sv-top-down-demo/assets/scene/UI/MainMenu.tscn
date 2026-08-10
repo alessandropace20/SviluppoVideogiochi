@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://duprcktbuey8f"]
+
+[ext_resource type="Texture2D" uid="uid://cj7lao106qnwu" path="res://resources/sprites/others/UI-Title-screen2.png" id="1_pll7j"]
+[ext_resource type="Texture2D" uid="uid://coshnff5chmbc" path="res://resources/sprites/others/UI-Menu and Buttons.png" id="2_44x3p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44x3p"]
+atlas = ExtResource("1_pll7j")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w0pqk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44x3p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq62q"]
+atlas = ExtResource("1_pll7j")
+region = Rect2(96, 64, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n166a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iq62q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0pqk"]
+atlas = ExtResource("2_44x3p")
+region = Rect2(96, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n166a"]
+atlas = ExtResource("2_44x3p")
+region = Rect2(144, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1s1j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0pqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n166a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1s1j"]
+atlas = ExtResource("2_44x3p")
+region = Rect2(192, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp614"]
+atlas = ExtResource("2_44x3p")
+region = Rect2(240, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_agld2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1s1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gp614")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gio6m"]
+atlas = ExtResource("2_44x3p")
+region = Rect2(480, 0, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g6fe"]
+atlas = ExtResource("2_44x3p")
+region = Rect2(528, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lva74"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gio6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g6fe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44x3p"]
+
+[node name="MainMenu" type="CanvasLayer" unique_id=679055312]
+
+[node name="Base" type="Node2D" parent="." unique_id=831866147]
+
+[node name="BackGround" type="AnimatedSprite2D" parent="Base" unique_id=1512110001]
+texture_filter = 1
+position = Vector2(576, 320)
+scale = Vector2(25.403265, 21.54285)
+sprite_frames = SubResource("SpriteFrames_w0pqk")
+
+[node name="Frame" type="AnimatedSprite2D" parent="Base" unique_id=1676372375]
+texture_filter = 1
+position = Vector2(568, 312)
+scale = Vector2(16.357534, 16.357534)
+sprite_frames = SubResource("SpriteFrames_n166a")
+
+[node name="Controls" type="Node2D" parent="." unique_id=253380959]
+
+[node name="PlayButton" type="AnimatedSprite2D" parent="Controls" unique_id=1266013997]
+texture_filter = 1
+position = Vector2(576, 200)
+scale = Vector2(7.135445, 7.135445)
+sprite_frames = SubResource("SpriteFrames_h1s1j")
+
+[node name="OptionButton" type="AnimatedSprite2D" parent="Controls" unique_id=1187945457]
+texture_filter = 1
+position = Vector2(576.00006, 312)
+scale = Vector2(7.1243277, 7.1243277)
+sprite_frames = SubResource("SpriteFrames_agld2")
+
+[node name="ExitButton" type="AnimatedSprite2D" parent="Controls" unique_id=272677675]
+texture_filter = 1
+position = Vector2(576.00006, 424.00003)
+scale = Vector2(7.051594, 7.051594)
+sprite_frames = SubResource("SpriteFrames_lva74")
+
+[node name="LoadButton" type="AnimatedSprite2D" parent="Controls" unique_id=790115219]
+sprite_frames = SubResource("SpriteFrames_44x3p")

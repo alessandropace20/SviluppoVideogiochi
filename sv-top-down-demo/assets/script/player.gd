@@ -29,14 +29,16 @@ func _ready() -> void:
 	health = max_health
 	sprite.animation_finished.connect(_on_animation_finished)
 	sprite.frame_changed.connect(_on_frame_changed)
-	
+
 	for hb in hitboxes.values():
 		hb.set_deferred("disabled", true)
+
+	# Notifica subito la UI del valore iniziale, così la barra parte già piena/corretta
+	EventBus.player_health_changed.emit(health, max_health)
 
 func _physics_process(delta):
 	if is_dead:
 		return
-
 	handle_attack_input()
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_vector * speed
@@ -77,9 +79,8 @@ func disable_all_hitboxes() -> void:
 
 func _on_animation_finished():
 	if is_dead and sprite.animation.begins_with("die"):
-		queue_free()  # o gestisci qui game over/respawn invece di rimuovere il player
+		queue_free()
 		return
-
 	if sprite.animation.begins_with("attack"):
 		is_attacking = false
 		disable_all_hitboxes()
@@ -91,7 +92,7 @@ func update_animation(direction: Vector2) -> void:
 	if direction == Vector2.ZERO:
 		sprite.play("idle_" + facing)
 		return
-	if abs(direction.x) > abs(direction.y):
+	if abs(direction.x) >= abs(direction.y):  # >= invece di > : in caso di parità, preferisce l'orizzontale
 		facing = "right" if direction.x > 0 else "left"
 	else:
 		facing = "down" if direction.y > 0 else "up"
@@ -100,13 +101,22 @@ func update_animation(direction: Vector2) -> void:
 func take_damage(damage: int, source_position: Vector2 = global_position) -> void:
 	if is_dead:
 		return
-
 	health -= damage
 	if health < 0:
 		health = 0
+
+	EventBus.player_health_changed.emit(health, max_health)
+
 	print("Il giocatore ha subito ", damage, " danni. HP: ", health)
 	if health == 0:
 		die()
+
+func heal(amount: int) -> void:
+	if is_dead:
+		return
+	health = min(health + amount, max_health)
+	EventBus.player_health_changed.emit(health, max_health)
+	print("Il giocatore ha recuperato ", amount, " HP. HP attuali: ", health)
 
 func die() -> void:
 	is_dead = true
@@ -115,3 +125,5 @@ func die() -> void:
 	velocity = Vector2.ZERO
 	disable_all_hitboxes()
 	sprite.play("die")
+	EventBus.player_died.emit()
+	EventBus.game_over.emit()
