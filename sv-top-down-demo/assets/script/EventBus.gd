@@ -5,6 +5,8 @@ signal player_died
 signal coins_changed(total_coins: int)
 signal level_completed
 signal game_over
+signal start_level_requested(level_id: String)
+signal return_to_menu_requested
 
 var total_coins: int = 0
 
