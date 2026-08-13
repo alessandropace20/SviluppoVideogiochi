@@ -1,21 +1,23 @@
 extends CanvasLayer
 
-@onready var main_panel: Control = $MainMenu
-@onready var level_select_panel: Control = $LevelSelectPanel
-@onready var options_panel: Control = $OptionsPanel
+@onready var main_panel: Control = $Control/MainMenu
+@onready var level_select_panel: Control = $Control/LevelSelectPanel
+@onready var options_panel: Control = $Control/OptionsPanel
 
-@onready var play_button: TextureButton = $MainMenu/VBoxContainer/PlayButton
-@onready var load_button: TextureButton = $MainMenu/VBoxContainer/LoadButton
-@onready var options_button: TextureButton = $MainMenu/VBoxContainer/OptionsButton
-@onready var quit_button: TextureButton = $MainMenu/VBoxContainer/QuitButton
+@onready var play_button: TextureButton = $Control/MainMenu/VBoxContainer/PlayButton
+@onready var load_button: TextureButton = $Control/MainMenu/VBoxContainer/LoadButton
+@onready var options_button: TextureButton = $Control/MainMenu/VBoxContainer/OptionsButton
+@onready var quit_button: TextureButton = $Control/MainMenu/VBoxContainer/QuitButton
 
-@onready var level1_button: TextureButton = $LevelSelectPanel/VBoxContainer/LevelDemoButton
-@onready var level_back_button: TextureButton = $LevelSelectPanel/VBoxContainer/BackButton
+@onready var level1_button: TextureButton = $Control/LevelSelectPanel/VBoxContainer/LevelDemoButton
+@onready var level_back_button: TextureButton = $Control/LevelSelectPanel/VBoxContainer/BackButton
 
-@onready var music_slider: HSlider = $OptionsPanel/VBoxContainer/MusicSlider
+@onready var options_back_button = $Control/OptionsPanel/BackButton
+@onready var music_slider: HSlider = $Control/OptionsPanel/VBoxContainer/MusicSlider
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	print("--- READY --- main:", main_panel, " level_select:", level_select_panel, " options:", options_panel)
 	show_panel(main_panel)
 
 	play_button.pressed.connect(_on_play_pressed)
@@ -25,7 +27,8 @@ func _ready() -> void:
 
 	level1_button.pressed.connect(_on_level1_pressed)
 	level_back_button.pressed.connect(_on_back_pressed)
-
+	
+	options_back_button.pressed.connect(_on_back_pressed)
 	music_slider.value_changed.connect(_on_music_slider_changed)
 	music_slider.value = AudioManager.music_volume_linear  
 
@@ -34,8 +37,10 @@ func show_panel(panel: Control) -> void:
 	level_select_panel.visible = false
 	options_panel.visible = false
 	panel.visible = true
+	print("Stato dopo show_panel -> main:", main_panel.visible, " level_select:", level_select_panel.visible, " options:", options_panel.visible)
 
 func _on_play_pressed() -> void:
+	print("Play premuto!")
 	show_panel(level_select_panel)
 
 func _on_load_pressed() -> void:

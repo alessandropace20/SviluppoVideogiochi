@@ -1,8 +1,5 @@
 extends Node2D
-
 @export var level_scenes: Dictionary[String, PackedScene] = {}
-# Nell'Inspector: aggiungi chiave "demo" -> trascina LevelDemo.tscn come valore.
-# Aggiungerai altre coppie man mano che crei nuovi livelli.
 
 @onready var level_container: Node2D = $Game/Level
 @onready var ui: CanvasLayer = $Game/UI
@@ -11,9 +8,15 @@ extends Node2D
 var current_level: Node = null
 
 func _ready() -> void:
+	print("MenuLayer.layer = ", menu_layer.layer)
+	print("UI.layer = ", ui.layer)
+	print("ui.visible prima = ", ui.visible)
+
 	get_tree().paused = true
 	ui.visible = false
 	menu_layer.visible = true
+
+	print("ui.visible dopo = ", ui.visible)
 
 	EventBus.start_level_requested.connect(_on_start_level_requested)
 	EventBus.return_to_menu_requested.connect(_on_return_to_menu_requested)
@@ -32,11 +35,9 @@ func _on_return_to_menu_requested() -> void:
 
 func load_level(level_id: String) -> void:
 	unload_current_level()
-
 	if not level_scenes.has(level_id):
 		push_error("Main: nessun livello registrato con id '" + level_id + "'")
 		return
-
 	var scene: PackedScene = level_scenes[level_id]
 	current_level = scene.instantiate()
 	level_container.add_child(current_level)
