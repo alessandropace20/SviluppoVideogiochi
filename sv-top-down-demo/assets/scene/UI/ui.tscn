@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bsku2yuadw0uk" path="res://assets/script/PauseMenu.gd" id="10_gjir4"]
 [ext_resource type="Texture2D" uid="uid://yt4rrj2ihfev" path="res://resources/sprites/others/Pause_Menu_BG.png" id="10_x4pe2"]
 [ext_resource type="Texture2D" uid="uid://bx81yklll3pmd" path="res://resources/sprites/others/PLAY-Button.png" id="11_gjir4"]
+[ext_resource type="Texture2D" uid="uid://ch4vajgbwsj4g" path="res://resources/sprites/others/BackGround-NEW.png" id="11_ocx7q"]
 [ext_resource type="Texture2D" uid="uid://o5xumipogx12" path="res://resources/sprites/others/PLAY-Pressed-Button.png" id="12_an6oe"]
 [ext_resource type="Texture2D" uid="uid://uhykkpgwc3rh" path="res://resources/sprites/others/OPTION-Button.png" id="13_45kn3"]
 [ext_resource type="Texture2D" uid="uid://qpkkxq6tounm" path="res://resources/sprites/others/OPTION-Pressed-Button.png" id="14_ocx7q"]
@@ -99,6 +100,12 @@ frame_progress = 0.07623613
 [node name="PauseMenu" type="Node2D" parent="." unique_id=787598671]
 position = Vector2(577, 308)
 script = ExtResource("10_gjir4")
+
+[node name="blur" type="Sprite2D" parent="PauseMenu" unique_id=918684681]
+modulate = Color(0.019130332, 0.019130332, 0.019130332, 0.28627452)
+position = Vector2(-4, 17)
+scale = Vector2(1.0815378, 1.0815378)
+texture = ExtResource("11_ocx7q")
 
 [node name="BackGround" type="Sprite2D" parent="PauseMenu" unique_id=411159869]
 texture_filter = 1
