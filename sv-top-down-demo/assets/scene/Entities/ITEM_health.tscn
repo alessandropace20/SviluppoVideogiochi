@@ -210,9 +210,11 @@ script = ExtResource("1_ngbvd")
 [node name="Health" type="AnimatedSprite2D" parent="." unique_id=1151449615]
 texture_filter = 1
 position = Vector2(-1.1920929e-07, 1.1920929e-07)
-scale = Vector2(0.625, 0.625)
+scale = Vector2(0.78054535, 0.78054535)
 sprite_frames = SubResource("SpriteFrames_scexw")
+animation = &"plus"
+frame = 15
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=940934547]
-visible = false
 shape = SubResource("CircleShape2D_ngbvd")

@@ -1,16 +1,18 @@
-extends Control
+extends Node2D
 
-@onready var resume_button: Button = $VBoxContainer/ResumeButton
-@onready var main_menu_button: Button = $VBoxContainer/MainMenuButton
-@onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var play_button: TextureButton = $Control/VBoxContainer/Play
+@onready var options_button: TextureButton = $Control/VBoxContainer/Options
+@onready var quit_button: TextureButton = $Control/VBoxContainer/QuitButton
+@onready var menu_button: TextureButton = $Control/VBoxContainer/MenuButton
 
 func _ready() -> void:
 	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	resume_button.pressed.connect(_on_resume_pressed)
-	main_menu_button.pressed.connect(_on_main_menu_pressed)
+	play_button.pressed.connect(_on_play_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
+	menu_button.pressed.connect(_on_menu_pressed)
+	# options_button.pressed.connect(_on_options_pressed)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -30,12 +32,16 @@ func _resume() -> void:
 	visible = false
 	get_tree().paused = false
 
-func _on_resume_pressed() -> void:
+func _on_play_pressed() -> void:
 	_resume()
-
-func _on_main_menu_pressed() -> void:
-	_resume()
-	EventBus.return_to_menu_requested.emit()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_menu_pressed() -> void:
+	visible = false
+	get_tree().paused = false  # importante: rimuovi la pausa prima di tornare al menu
+
+	var main = get_tree().current_scene
+	if main.has_method("return_to_menu"):
+		main.return_to_menu()
