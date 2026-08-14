@@ -5,8 +5,34 @@
 [ext_resource type="Texture2D" uid="uid://dtg128vppkgar" path="res://resources/sprites/others/New Piskel-2.png.png" id="3_k7gqu"]
 [ext_resource type="Texture2D" uid="uid://bkjma8v3rln5a" path="res://resources/sprites/others/coin_over.png.png" id="4_k7gqu"]
 [ext_resource type="Script" uid="uid://cw3kii8gc7rcf" path="res://assets/scene/UI/life_bar.gd" id="4_pujoq"]
+[ext_resource type="FontFile" uid="uid://bnbiqkk4sdcxk" path="res://resources/Eazygoin-Regular.ttf" id="5_c4eh1"]
 [ext_resource type="Texture2D" uid="uid://bj511ym4wg77p" path="res://resources/sprites/others/coin_texture_base.png" id="5_pujoq"]
 [ext_resource type="Script" uid="uid://c7bdqn033vwad" path="res://assets/scene/UI/coin_bar.gd" id="7_g20ys"]
+[ext_resource type="Texture2D" uid="uid://cmgx3acgspgpw" path="res://resources/sprites/others/MAX_COIN.png" id="8_mxi72"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mxi72"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4eh1"]
+atlas = ExtResource("8_mxi72")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfb45"]
+atlas = ExtResource("8_mxi72")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wta75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4eh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfb45")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="UI" type="CanvasLayer" unique_id=312769223]
 
@@ -16,28 +42,93 @@ scale = Vector2(0.89970994, 0.89970994)
 
 [node name="LifeBar" type="TextureProgressBar" parent="HUD" unique_id=1478087818]
 texture_filter = 1
-offset_left = 21.0
-offset_top = 17.0
-offset_right = 149.0
-offset_bottom = 57.0
-scale = Vector2(2.5511634, 2.5511634)
+offset_left = 24.452324
+offset_top = 580.1869
+offset_right = 152.45233
+offset_bottom = 620.1869
+scale = Vector2(3.4425402, 3.4425402)
 value = 100.0
 texture_under = ExtResource("1_u5q84")
 texture_over = ExtResource("2_sq44f")
 texture_progress = ExtResource("3_k7gqu")
 script = ExtResource("4_pujoq")
 
+[node name="Label" type="Label" parent="HUD/LifeBar" unique_id=746540478]
+texture_filter = 1
+layout_mode = 0
+offset_left = 6.491515
+offset_top = 6.6848598
+offset_right = 27.539845
+offset_bottom = 21.723248
+scale = Vector2(1.0341629, 0.9649704)
+theme_override_fonts/font = ExtResource("5_c4eh1")
+text = "100"
+label_settings = SubResource("LabelSettings_mxi72")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CoinBar" type="TextureProgressBar" parent="HUD" unique_id=822501996]
 texture_filter = 1
-offset_left = 28.898193
-offset_top = 113.36987
-offset_right = 156.8982
-offset_bottom = 153.36986
-scale = Vector2(2.1695595, 2.1695595)
+offset_left = 890.2869
+offset_top = 584.6329
+offset_right = 1018.2869
+offset_bottom = 624.6329
+scale = Vector2(2.7343106, 2.7343106)
 texture_under = ExtResource("1_u5q84")
 texture_over = ExtResource("4_k7gqu")
 texture_progress = ExtResource("5_pujoq")
 tint_progress = Color(1, 1, 0, 1)
 script = ExtResource("7_g20ys")
 
+[node name="MaxCoin_message" type="AnimatedSprite2D" parent="HUD/CoinBar" unique_id=1580795623]
+position = Vector2(77.357574, 14.856753)
+sprite_frames = SubResource("SpriteFrames_wta75")
+frame = 1
+frame_progress = 0.07623613
+
+[node name="Obiettivi" type="Label" parent="HUD" unique_id=1498582793]
+texture_filter = 1
+offset_left = 5.55735
+offset_top = 4.445878
+offset_right = 543.5574
+offset_bottom = 98.44588
+scale = Vector2(0.5237409, 0.5237409)
+theme_override_fonts/font = ExtResource("5_c4eh1")
+theme_override_font_sizes/font_size = 100
+text = "Obiettivi livello:"
+
+[node name="Nemici" type="Label" parent="HUD" unique_id=1625140053]
+texture_filter = 1
+offset_left = 46.68171
+offset_top = 50.01612
+offset_right = 821.6817
+offset_bottom = 144.01611
+scale = Vector2(0.35849497, 0.35849497)
+theme_override_fonts/font = ExtResource("5_c4eh1")
+theme_override_font_sizes/font_size = 100
+text = "Sconfiggi tutti i nemici"
+
+[node name="Monete" type="Label" parent="HUD" unique_id=643126371]
+texture_filter = 1
+offset_left = 48.90464
+offset_top = 81.13727
+offset_right = 911.90466
+offset_bottom = 175.13727
+scale = Vector2(0.38981673, 0.38981673)
+theme_override_fonts/font = ExtResource("5_c4eh1")
+theme_override_font_sizes/font_size = 100
+text = "Raccogli tutte le monete"
+
+[node name="Boss" type="Label" parent="HUD" unique_id=952789064]
+texture_filter = 1
+offset_left = 47.793186
+offset_top = 117.81575
+offset_right = 854.7932
+offset_bottom = 211.81577
+scale = Vector2(0.42030418, 0.42030418)
+theme_override_fonts/font = ExtResource("5_c4eh1")
+theme_override_font_sizes/font_size = 100
+text = "Sconfiggi il Blue Goblin"
+
 [node name="PauseMenu" type="Node2D" parent="." unique_id=787598671]
+visible = false

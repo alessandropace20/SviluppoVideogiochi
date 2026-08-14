@@ -1,5 +1,6 @@
 extends Node2D
-@export var level_scenes: Dictionary[String, PackedScene] = {}
+
+@export var level_scene: PackedScene
 
 @onready var level_container: Node2D = $Game/Level
 @onready var ui: CanvasLayer = $Game/UI
@@ -7,40 +8,83 @@ extends Node2D
 
 var current_level: Node = null
 
+
 func _ready() -> void:
-	print("MenuLayer.layer = ", menu_layer.layer)
-	print("UI.layer = ", ui.layer)
-	print("ui.visible prima = ", ui.visible)
+	print("MAIN READY")
+
+	print("inside tree:", is_inside_tree())
+	await get_tree().process_frame
+	print("DOPO UN FRAME")
+	print("inside tree:", is_inside_tree())
+	print("tree:", get_tree())
 
 	get_tree().paused = true
+
 	ui.visible = false
 	menu_layer.visible = true
 
-	print("ui.visible dopo = ", ui.visible)
+	menu_layer.play_requested.connect(_on_play_requested)
+	menu_layer.load_requested.connect(_on_load_requested)
 
-	EventBus.start_level_requested.connect(_on_start_level_requested)
-	EventBus.return_to_menu_requested.connect(_on_return_to_menu_requested)
 
-func _on_start_level_requested(level_id: String) -> void:
-	load_level(level_id)
+func _on_play_requested() -> void:
+	_start_level()
+
+
+func _on_load_requested() -> void:
+	if not SaveManager.has_save():
+		print("Nessun salvataggio trovato")
+		return
+
+	SaveManager.load_game()
+	_start_level()
+
+
+func _start_level() -> void:
+	print("========== START LEVEL ==========")
+	print("1 - Main inside tree: ", is_inside_tree())
+	print("1 - Tree: ", get_tree())
+
+	if level_scene == null:
+		push_error("level_scene non assegnata!")
+		return
+
+	unload_current_level()
+
+	print("2 - Dopo unload")
+	print("Main inside tree: ", is_inside_tree())
+	print("Tree: ", get_tree())
+
+	current_level = level_scene.instantiate()
+
+	print("3 - Dopo instantiate")
+	print("Main inside tree: ", is_inside_tree())
+	print("Tree: ", get_tree())
+
+	level_container.add_child(current_level)
+
+	print("4 - Dopo add_child")
+	print("Main inside tree: ", is_inside_tree())
+	print("Tree: ", get_tree())
+
 	ui.visible = true
 	menu_layer.visible = false
+
+	print("5 - Prima di unpause")
+	print("Main inside tree: ", is_inside_tree())
+	print("Tree: ", get_tree())
+
 	get_tree().paused = false
 
-func _on_return_to_menu_requested() -> void:
+
+func return_to_menu() -> void:
 	unload_current_level()
+
 	ui.visible = false
 	menu_layer.visible = true
+
 	get_tree().paused = true
 
-func load_level(level_id: String) -> void:
-	unload_current_level()
-	if not level_scenes.has(level_id):
-		push_error("Main: nessun livello registrato con id '" + level_id + "'")
-		return
-	var scene: PackedScene = level_scenes[level_id]
-	current_level = scene.instantiate()
-	level_container.add_child(current_level)
 
 func unload_current_level() -> void:
 	if current_level != null:

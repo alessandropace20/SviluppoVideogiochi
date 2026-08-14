@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed := 30.0
-@export var attack_range := 30.0
+@export var attack_range := 0.0
 @export var attack_damage := 10
 @export var attack_cooldown := 1.0
 @export var max_health := 50
@@ -40,10 +40,15 @@ var attack_cooldown_timer: Timer
 var hurt_timer: Timer
 
 func _ready():
+	print("ENEMY SPAWNED: ", name)
+
+	print("POSITION: ", global_position)
+	print("SPRITE: ", sprite)
+	print("SPRITE VISIBLE: ", sprite.visible)
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
-	health_bar.visible = false
+	health_bar.visible = false 
 
 	health_bar_timer = _make_timer(_on_health_bar_timer_timeout)
 	reaction_timer = _make_timer(_on_reaction_timeout)
@@ -102,8 +107,9 @@ func _process_chase() -> void:
 		start_attack()
 		return
 
-	velocity = direction * speed
-	sprite.play("idle_" + facing) # o "run_" + facing se disponibile
+	var difficulty_speed = speed * DifficultyManager.get_enemy_speed_multiplier()
+	velocity = direction * difficulty_speed
+	sprite.play("run_" + facing) # o "run_" + facing se disponibile
 	move_and_slide()
 
 func start_attack() -> void:
@@ -149,15 +155,15 @@ func _process_hurt(delta) -> void:
 	velocity = knockback_velocity
 	move_and_slide()
 
-func enter_hurt(source_position: Vector2) -> void:
+func enter_hurt(source_position: Vector2, knockback_force: float = -1.0) -> void:
 	if state == State.DEAD:
 		return
 
-	# Interrompe qualunque attacco in corso, disattivando subito la hitbox
 	disable_all_hitboxes()
 
+	var force = knockback_force if knockback_force >= 0.0 else knockback_strength
 	var knockback_dir = (global_position - source_position).normalized()
-	knockback_velocity = knockback_dir * knockback_strength
+	knockback_velocity = knockback_dir * force
 
 	change_state(State.HURT)
 	sprite.play("hurt_" + facing)
@@ -174,7 +180,7 @@ func _on_hurt_timeout() -> void:
 
 # --- Danno / vita ---
 
-func take_damage(damage: int, source_position: Vector2 = global_position) -> void:
+func take_damage(damage: int, source_position: Vector2 = global_position, knockback_force: float = -1.0) -> void:
 	if state == State.DEAD:
 		return
 	health -= damage
@@ -187,7 +193,7 @@ func take_damage(damage: int, source_position: Vector2 = global_position) -> voi
 	if health == 0:
 		die()
 	else:
-		enter_hurt(source_position)
+		enter_hurt(source_position, knockback_force)
 
 func show_health_bar() -> void:
 	health_bar.visible = true
@@ -205,7 +211,7 @@ func die() -> void:
 	knockback_velocity = Vector2.ZERO
 	disable_all_hitboxes()
 	health_bar.visible = false
-	sprite.play("die") # o sprite.stop() se preferisci il freeze silenzioso
+	sprite.play("die_" + facing)
 
 func update_facing(dir):
 	if abs(dir.x) > abs(dir.y):

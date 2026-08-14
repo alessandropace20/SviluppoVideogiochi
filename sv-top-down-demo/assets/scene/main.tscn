@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dtrumqxuqvts6" path="res://assets/script/main.gd" id="1_0nmyk"]
 [ext_resource type="PackedScene" uid="uid://bstyon1lq203s" path="res://assets/scene/UI/ui.tscn" id="2_0nmyk"]
+[ext_resource type="PackedScene" uid="uid://ddo5xo7oalik8" path="res://assets/scene/main_level/Level.tscn" id="2_0vk0l"]
 [ext_resource type="PackedScene" uid="uid://duprcktbuey8f" path="res://assets/scene/UI/MainMenu.tscn" id="4_0vk0l"]
 
 [node name="Main" type="Node2D" unique_id=1135119149]
 script = ExtResource("1_0nmyk")
+level_scene = ExtResource("2_0vk0l")
 
 [node name="Game" type="Node" parent="." unique_id=1916984996]
 

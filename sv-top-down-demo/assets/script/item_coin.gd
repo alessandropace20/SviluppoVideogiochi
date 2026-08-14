@@ -2,7 +2,7 @@ extends Area2D
 @onready var sprite: AnimatedSprite2D = $Coin
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
-@export var coin_value: int = 1
+@export var coin_value: int = 30
 
 func _ready() -> void:
 	sprite.play("rotate")

@@ -2,157 +2,138 @@
 
 [ext_resource type="Texture2D" uid="uid://dx6l5npghov4j" path="res://resources/sprites/others/Copertina.png" id="1_gio6m"]
 [ext_resource type="Script" uid="uid://cdblwy1w3jjyx" path="res://assets/script/main_menu.gd" id="1_lva74"]
-[ext_resource type="Texture2D" uid="uid://ch4vajgbwsj4g" path="res://resources/sprites/others/BackGround-NEW.png" id="2_agld2"]
 [ext_resource type="Texture2D" uid="uid://bx81yklll3pmd" path="res://resources/sprites/others/PLAY-Button.png" id="2_n166a"]
 [ext_resource type="Texture2D" uid="uid://dx8sw57vu4dr5" path="res://resources/sprites/others/LOAD_Button.png" id="2_w0pqk"]
-[ext_resource type="Script" uid="uid://jebrwtl6vfri" path="res://assets/script/controls.gd" id="3_gio6m"]
 [ext_resource type="Texture2D" uid="uid://o5xumipogx12" path="res://resources/sprites/others/PLAY-Pressed-Button.png" id="3_h1s1j"]
 [ext_resource type="Texture2D" uid="uid://chbaxdfw13sfc" path="res://resources/sprites/others/LOAD-Pressed-Button.png.png" id="3_iq62q"]
 [ext_resource type="Texture2D" uid="uid://ds7av76sgr5wv" path="res://resources/sprites/others/QUIT-Button.png" id="6_gp614"]
 [ext_resource type="Texture2D" uid="uid://uhykkpgwc3rh" path="res://resources/sprites/others/OPTION-Button.png" id="7_8g6fe"]
 [ext_resource type="Texture2D" uid="uid://dcqq4qdlxn6up" path="res://resources/sprites/others/QUIT-Pressed-Button.png" id="7_agld2"]
 [ext_resource type="Texture2D" uid="uid://qpkkxq6tounm" path="res://resources/sprites/others/OPTION-Pressed-Button.png" id="8_lva74"]
-[ext_resource type="Texture2D" uid="uid://bj511ym4wg77p" path="res://resources/sprites/others/coin_texture_base.png" id="13_pnxrn"]
-[ext_resource type="Texture2D" uid="uid://s41q320dy4t8" path="res://resources/sprites/others/MENU_OPTIONS.png-1.png.png" id="14_hr15s"]
+[ext_resource type="Texture2D" uid="uid://dh5qgnycbnx8k" path="res://resources/sprites/others/NEWOPTIONS.png" id="11_hr15s"]
+[ext_resource type="Texture2D" uid="uid://bo6140v5m313m" path="res://resources/sprites/others/BACK.png" id="12_wce3t"]
+[ext_resource type="Texture2D" uid="uid://daym0mkejro1x" path="res://resources/sprites/others/BACK_Pressed.png" id="13_pnxrn"]
+[ext_resource type="Texture2D" uid="uid://mdfnobpxph5r" path="res://resources/sprites/others/NORMAL_Normal.png" id="14_a1sel"]
+[ext_resource type="ButtonGroup" uid="uid://dc6h1j33kjwvl" path="res://resources/mode_button.tres" id="14_grccc"]
+[ext_resource type="Texture2D" uid="uid://c38sy2l4hjw0t" path="res://resources/sprites/others/NORMAL_Toggle.png" id="15_2gtod"]
+[ext_resource type="Texture2D" uid="uid://dlgj23p4p5hlh" path="res://resources/sprites/others/EASY_Normal.png" id="16_grccc"]
+[ext_resource type="Texture2D" uid="uid://dwlfcblkhd2d5" path="res://resources/sprites/others/EASY_Toggle.png" id="17_awn8f"]
+[ext_resource type="Texture2D" uid="uid://ck6hooca5i1e8" path="res://resources/sprites/others/HARD_Normal.png" id="18_owpw5"]
+[ext_resource type="Texture2D" uid="uid://cpuhd6qjgbrpf" path="res://resources/sprites/others/HARD_Toggle.png" id="19_6y8hm"]
+
+[sub_resource type="Theme" id="Theme_hr15s"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=679055312]
 script = ExtResource("1_lva74")
 
-[node name="Control" type="Control" parent="." unique_id=1257967624]
+[node name="MainMenu" type="Control" parent="." unique_id=1116864222]
+visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
-[node name="MainMenu" type="Control" parent="Control" unique_id=1116864222]
-visible = false
-anchors_preset = 0
-script = ExtResource("3_gio6m")
+[node name="Base" type="Node2D" parent="MainMenu" unique_id=831866147]
 
-[node name="Base" type="Node2D" parent="Control/MainMenu" unique_id=831866147]
-
-[node name="Sprite2D" type="Sprite2D" parent="Control/MainMenu/Base" unique_id=1438856455]
+[node name="Sprite2D" type="Sprite2D" parent="MainMenu/Base" unique_id=1438856455]
 position = Vector2(576, 328)
 scale = Vector2(1.4251398, 1.4477719)
 texture = ExtResource("1_gio6m")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MainMenu" unique_id=1020620282]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1020620282]
 texture_filter = 1
 layout_mode = 0
 offset_left = 96.00001
-offset_top = 64.0
+offset_top = 104.0
 offset_right = 144.0
-offset_bottom = 120.0
+offset_bottom = 180.0
 scale = Vector2(5.3209767, 5.750387)
 
-[node name="PlayButton" type="TextureButton" parent="Control/MainMenu/VBoxContainer" unique_id=1932213748]
+[node name="PlayButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=1932213748]
 layout_mode = 2
 texture_normal = ExtResource("2_n166a")
 texture_pressed = ExtResource("3_h1s1j")
 
-[node name="LoadButton" type="TextureButton" parent="Control/MainMenu/VBoxContainer" unique_id=388023648]
+[node name="LoadButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=388023648]
 layout_mode = 2
 texture_normal = ExtResource("2_w0pqk")
 texture_pressed = ExtResource("3_iq62q")
 
-[node name="OptionsButton" type="TextureButton" parent="Control/MainMenu/VBoxContainer" unique_id=471257769]
+[node name="OptionsButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=471257769]
 layout_mode = 2
 texture_normal = ExtResource("7_8g6fe")
 texture_pressed = ExtResource("8_lva74")
 
-[node name="QuitButton" type="TextureButton" parent="Control/MainMenu/VBoxContainer" unique_id=547459843]
+[node name="QuitButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=547459843]
 layout_mode = 2
 texture_normal = ExtResource("6_gp614")
 texture_pressed = ExtResource("7_agld2")
 
-[node name="OptionsPanel" type="Control" parent="Control" unique_id=1231808833]
-visible = false
+[node name="OptionsPanel" type="Control" parent="." unique_id=1231808833]
+layout_mode = 3
 anchors_preset = 0
 offset_left = 488.0
 offset_top = 800.0
 offset_right = 528.0
 offset_bottom = 840.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Control/OptionsPanel" unique_id=156668735]
-position = Vector2(112, -456)
-scale = Vector2(1.5857836, 1.6444575)
-texture = ExtResource("14_hr15s")
-
-[node name="BackButton" type="TextureButton" parent="Control/OptionsPanel" unique_id=993734445]
-layout_mode = 0
-offset_left = -400.0
-offset_top = -712.00006
-offset_right = -272.0
-offset_bottom = -680.00006
-scale = Vector2(1.2320015, 4.839584)
-texture_normal = ExtResource("2_w0pqk")
-texture_pressed = ExtResource("3_iq62q")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsPanel" unique_id=1685546437]
-layout_mode = 0
-offset_left = 15.999996
-offset_top = -520.0
-offset_right = 144.0
-offset_bottom = -448.0
-scale = Vector2(3.947733, 4.5091715)
-
-[node name="MusicSlider" type="HSlider" parent="Control/OptionsPanel/VBoxContainer" unique_id=1221867173]
-texture_filter = 6
-layout_mode = 2
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Control/OptionsPanel/VBoxContainer" unique_id=823026077]
-layout_mode = 2
-
-[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Control/OptionsPanel/VBoxContainer" unique_id=1423201656]
-layout_mode = 2
-
-[node name="AspectRatioContainer3" type="AspectRatioContainer" parent="Control/OptionsPanel/VBoxContainer" unique_id=51224634]
-layout_mode = 2
-
-[node name="AspectRatioContainer4" type="AspectRatioContainer" parent="Control/OptionsPanel/VBoxContainer" unique_id=321945592]
-layout_mode = 2
-
-[node name="AspectRatioContainer5" type="AspectRatioContainer" parent="Control/OptionsPanel/VBoxContainer" unique_id=314151356]
-layout_mode = 2
-
-[node name="AspectRatioContainer6" type="AspectRatioContainer" parent="Control/OptionsPanel/VBoxContainer" unique_id=1633823983]
-layout_mode = 2
-
-[node name="SFX" type="HSlider" parent="Control/OptionsPanel/VBoxContainer" unique_id=1638062298]
+[node name="Sprite2D" type="Sprite2D" parent="OptionsPanel" unique_id=156668735]
 texture_filter = 1
-layout_mode = 2
+position = Vector2(96, -464)
+scale = Vector2(1.473236, 1.5277455)
+texture = ExtResource("11_hr15s")
 
-[node name="LevelSelectPanel" type="Control" parent="Control" unique_id=407017102]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(30.878983, 17.466429)
-
-[node name="Sprite2D" type="Sprite2D" parent="Control/LevelSelectPanel" unique_id=1689683673]
-position = Vector2(20.466997, 18.778881)
-scale = Vector2(0.036561564, 0.057077203)
-texture = ExtResource("2_agld2")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/LevelSelectPanel" unique_id=483426487]
+[node name="BackButton" type="TextureButton" parent="OptionsPanel" unique_id=993734445]
+texture_filter = 1
 layout_mode = 0
-offset_left = 6.7359743
-offset_top = 4.5802155
-offset_right = 134.73598
-offset_bottom = 144.58022
-scale = Vector2(0.18932074, 0.18932074)
+offset_left = -424.0
+offset_top = -759.99994
+offset_right = -360.0
+offset_bottom = -695.99994
+scale = Vector2(1.9034474, 2.161914)
+texture_normal = ExtResource("12_wce3t")
+texture_pressed = ExtResource("13_pnxrn")
 
-[node name="LevelDemoButton" type="TextureButton" parent="Control/LevelSelectPanel/VBoxContainer" unique_id=29616489]
-layout_mode = 2
-texture_normal = ExtResource("13_pnxrn")
+[node name="MusicSlider" type="HSlider" parent="OptionsPanel" unique_id=1221867173]
+texture_filter = 6
+layout_mode = 0
+offset_left = 24.0
+offset_top = -224.0
+offset_right = 408.0
+offset_bottom = -160.0
+theme = SubResource("Theme_hr15s")
 
-[node name="LVLUknown" type="TextureButton" parent="Control/LevelSelectPanel/VBoxContainer" unique_id=1280254892]
-layout_mode = 2
-texture_normal = ExtResource("13_pnxrn")
+[node name="SFX" type="HSlider" parent="OptionsPanel" unique_id=1638062298]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = -424.0
+offset_right = 412.0
+offset_bottom = -352.0
 
-[node name="LVLUknown2" type="TextureButton" parent="Control/LevelSelectPanel/VBoxContainer" unique_id=1277867471]
-layout_mode = 2
-texture_normal = ExtResource("13_pnxrn")
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsPanel" unique_id=1557351896]
+layout_mode = 0
+offset_left = -232.0
+offset_top = -600.0
+offset_right = -192.0
+offset_bottom = -560.0
 
-[node name="BackButton" type="TextureButton" parent="Control/LevelSelectPanel/VBoxContainer" unique_id=376220062]
+[node name="Easy" type="TextureButton" parent="OptionsPanel/HBoxContainer" unique_id=1204728922]
 layout_mode = 2
-texture_normal = ExtResource("13_pnxrn")
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("14_grccc")
+texture_normal = ExtResource("16_grccc")
+texture_pressed = ExtResource("17_awn8f")
+
+[node name="Normal" type="TextureButton" parent="OptionsPanel/HBoxContainer" unique_id=1696413234]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("14_grccc")
+texture_normal = ExtResource("14_a1sel")
+texture_pressed = ExtResource("15_2gtod")
+
+[node name="Hard" type="TextureButton" parent="OptionsPanel/HBoxContainer" unique_id=1720618311]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("14_grccc")
+texture_normal = ExtResource("18_owpw5")
+texture_pressed = ExtResource("19_6y8hm")
