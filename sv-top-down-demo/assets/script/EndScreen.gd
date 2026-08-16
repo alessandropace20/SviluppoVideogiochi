@@ -1,16 +1,15 @@
-extends Control
-
-@onready var title_label: Label = $VBoxContainer/TitleLabel
-@onready var retry_button: Button = $VBoxContainer/RetryButton
-@onready var main_menu_button: Button = $VBoxContainer/MainMenuButton
+extends Node2D
+@onready var title_label: Label = $Control/TitleLabel
+@onready var retry_button: TextureButton = $Control/VBoxContainer/Retry
+@onready var main_menu_button: TextureButton = $Control/VBoxContainer/Menu
+@onready var quit_button: TextureButton = $Control/VBoxContainer/Quit
 
 func _ready() -> void:
 	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
-
 	retry_button.pressed.connect(_on_retry_pressed)
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
-
+	quit_button.pressed.connect(_on_quit_pressed)
 	EventBus.game_over.connect(_on_game_over)
 	EventBus.level_completed.connect(_on_level_completed)
 
@@ -28,9 +27,17 @@ func _show_screen() -> void:
 
 func _on_retry_pressed() -> void:
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	visible = false
+	var main = get_tree().current_scene
+	if main.has_method("_start_level"):
+		main._start_level()
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
 	visible = false
-	EventBus.return_to_menu_requested.emit()
+	var main = get_tree().current_scene
+	if main.has_method("return_to_menu"):
+		main.return_to_menu()
+		
+func _on_quit_pressed() -> void:
+	get_tree().quit()

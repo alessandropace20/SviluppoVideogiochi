@@ -28,6 +28,8 @@ func _ready() -> void:
 
 
 func _on_play_requested() -> void:
+	SaveManager.reset_progress()
+	EventBus.reset_run()
 	_start_level()
 
 
@@ -38,6 +40,7 @@ func _on_load_requested() -> void:
 
 	SaveManager.load_game()
 	_start_level()
+	SaveManager.apply_to_level()
 
 
 func _start_level() -> void:

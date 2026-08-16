@@ -957,11 +957,11 @@ position = Vector2(19, 0)
 shape = SubResource("RectangleShape2D_g730j")
 
 [node name="HitBox_up" type="CollisionShape2D" parent="AttackArea" unique_id=893956909]
-position = Vector2(0, -21)
+position = Vector2(0, -25)
 shape = SubResource("RectangleShape2D_y3nf3")
 
 [node name="HitBox_down" type="CollisionShape2D" parent="AttackArea" unique_id=17856169]
-position = Vector2(0, 17)
+position = Vector2(0, 18)
 shape = SubResource("RectangleShape2D_5intj")
 
 [node name="HitBox_left" type="CollisionShape2D" parent="AttackArea" unique_id=1880299534]

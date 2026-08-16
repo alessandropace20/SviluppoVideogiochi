@@ -18,8 +18,8 @@ func _ready() -> void:
 
 
 func _on_coins_changed(total_coins: int) -> void:
+	print("CoinBar ha ricevuto il segnale, nuovo totale: ", total_coins)
 	value = total_coins
-
 	if total_coins >= max_coins:
 		animated_sprite.visible = true
 		animated_sprite.play("default")

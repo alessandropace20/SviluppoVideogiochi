@@ -98,6 +98,8 @@ func disable_all_hitboxes() -> void:
 func _on_animation_finished():
 	if is_dead and sprite.animation.begins_with("die"):
 		queue_free()
+		EventBus.player_died.emit()
+		EventBus.game_over.emit()
 		return
 
 	if sprite.animation.begins_with("attack"):
@@ -179,5 +181,3 @@ func die() -> void:
 	knockback_velocity = Vector2.ZERO
 	disable_all_hitboxes()
 	sprite.play("die")
-	EventBus.player_died.emit()
-	EventBus.game_over.emit()

@@ -18,9 +18,9 @@ run/max_fps=60
 [autoload]
 
 EventBus="*uid://du3osbdtk33as"
-SaveManager="*uid://mxcbd783a7lr"
 AudioManager="*uid://bxbcouxm4vkv8"
 DifficultyManager="*uid://c5ltiv0whiwxq"
+SaveManager="*uid://mxcbd783a7lr"
 
 [display]
 

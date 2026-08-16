@@ -2,8 +2,9 @@ extends Node2D
 
 @onready var play_button: TextureButton = $Control/VBoxContainer/Play
 @onready var options_button: TextureButton = $Control/VBoxContainer/Options
-@onready var quit_button: TextureButton = $Control/VBoxContainer/QuitButton
-@onready var menu_button: TextureButton = $Control/VBoxContainer/MenuButton
+@onready var quit_button: TextureButton = $Control/VBoxContainer/Quit
+@onready var menu_button: TextureButton = $Control/VBoxContainer/Menu
+@onready var save_button: TextureButton = $Control/VBoxContainer/Save
 
 func _ready() -> void:
 	visible = false
@@ -12,6 +13,7 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 	menu_button.pressed.connect(_on_menu_pressed)
+	save_button.pressed.connect(_on_save_pressed)
 	# options_button.pressed.connect(_on_options_pressed)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,8 +42,11 @@ func _on_quit_pressed() -> void:
 
 func _on_menu_pressed() -> void:
 	visible = false
-	get_tree().paused = false  # importante: rimuovi la pausa prima di tornare al menu
+	get_tree().paused = false
 
 	var main = get_tree().current_scene
 	if main.has_method("return_to_menu"):
 		main.return_to_menu()
+
+func _on_save_pressed() -> void:
+	SaveManager.save_game()

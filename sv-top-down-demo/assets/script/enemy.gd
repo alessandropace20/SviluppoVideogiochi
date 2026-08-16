@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
 @export var speed := 60.0
-@export var attack_range := 0.0
+@export var attack_range := 30.0
 @export var attack_damage := 10
 @export var attack_cooldown := 1.0
 @export var max_health := 50
 @export var reaction_time := 0.3
 
+@export var enemy_id: String = ""  # se lo lasci vuoto, viene usato il nome del nodo
 @export var hurt_duration := 0.3
 @export var knockback_strength := 80.0
 @export var knockback_friction := 600.0  # quanto velocemente il knockback rallenta
@@ -39,7 +40,10 @@ var reaction_timer: Timer
 var attack_cooldown_timer: Timer
 var hurt_timer: Timer
 
+
 func _ready():
+	if enemy_id == "":
+		enemy_id = name
 	print("ENEMY SPAWNED: ", name)
 
 	print("POSITION: ", global_position)
@@ -212,6 +216,7 @@ func die() -> void:
 	disable_all_hitboxes()
 	health_bar.visible = false
 	sprite.play("die_" + facing)
+	EventBus.enemy_defeated.emit(enemy_id)
 
 func update_facing(dir):
 	if abs(dir.x) > abs(dir.y):
