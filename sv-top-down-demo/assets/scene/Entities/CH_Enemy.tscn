@@ -1096,3 +1096,6 @@ shape = SubResource("RectangleShape2D_d4gx1")
 [node name="HitBox_left" type="CollisionShape2D" parent="AttackArea" unique_id=843111794]
 position = Vector2(-18, -1)
 shape = SubResource("RectangleShape2D_l5fkn")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=645166672]
+bus = &"SFX"

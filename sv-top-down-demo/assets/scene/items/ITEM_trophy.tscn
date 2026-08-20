@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://cao0hlff64bp4"]
+
+[ext_resource type="Script" uid="uid://ecpp5vxlobjr" path="res://assets/script/item_trophy.gd" id="1_5nqlv"]
+[ext_resource type="Texture2D" uid="uid://c20jwwtdnbdv" path="res://resources/sprites/items/New Piskel.png" id="1_636uu"]
+[ext_resource type="Texture2D" uid="uid://pk1iocktf06v" path="res://resources/sprites/items/Trophy.png" id="1_wokom"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nqlv"]
+atlas = ExtResource("1_636uu")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rycl"]
+atlas = ExtResource("1_636uu")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6t4o2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rycl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40vqm"]
+atlas = ExtResource("1_wokom")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ioh1"]
+atlas = ExtResource("1_wokom")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fomj"]
+atlas = ExtResource("1_wokom")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exjle"]
+atlas = ExtResource("1_wokom")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_18602"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40vqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ioh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fomj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exjle")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18602"]
+radius = 69.260376
+
+[node name="ItemTrophy" type="Area2D" unique_id=2004745086]
+collision_layer = 11
+collision_mask = 11
+script = ExtResource("1_5nqlv")
+
+[node name="Shadow" type="AnimatedSprite2D" parent="." unique_id=978149200]
+self_modulate = Color(1, 1, 1, 0.52156866)
+position = Vector2(50, 4)
+sprite_frames = SubResource("SpriteFrames_6t4o2")
+autoplay = "default"
+frame = 1
+frame_progress = 0.9254341
+
+[node name="Trophy" type="AnimatedSprite2D" parent="." unique_id=1641505569]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_18602")
+autoplay = "default"
+frame = 2
+frame_progress = 0.32037464
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1487662618]
+shape = SubResource("CircleShape2D_18602")

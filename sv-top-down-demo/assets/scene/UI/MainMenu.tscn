@@ -27,7 +27,6 @@
 script = ExtResource("1_lva74")
 
 [node name="MainMenu" type="Control" parent="." unique_id=1116864222]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 

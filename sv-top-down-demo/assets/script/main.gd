@@ -10,16 +10,8 @@ var current_level: Node = null
 
 
 func _ready() -> void:
-	print("MAIN READY")
-
-	print("inside tree:", is_inside_tree())
-	await get_tree().process_frame
-	print("DOPO UN FRAME")
-	print("inside tree:", is_inside_tree())
-	print("tree:", get_tree())
-
 	get_tree().paused = true
-
+	
 	ui.visible = false
 	menu_layer.visible = true
 
@@ -54,28 +46,12 @@ func _start_level() -> void:
 
 	unload_current_level()
 
-	print("2 - Dopo unload")
-	print("Main inside tree: ", is_inside_tree())
-	print("Tree: ", get_tree())
-
 	current_level = level_scene.instantiate()
-
-	print("3 - Dopo instantiate")
-	print("Main inside tree: ", is_inside_tree())
-	print("Tree: ", get_tree())
 
 	level_container.add_child(current_level)
 
-	print("4 - Dopo add_child")
-	print("Main inside tree: ", is_inside_tree())
-	print("Tree: ", get_tree())
-
 	ui.visible = true
 	menu_layer.visible = false
-
-	print("5 - Prima di unpause")
-	print("Main inside tree: ", is_inside_tree())
-	print("Tree: ", get_tree())
 
 	get_tree().paused = false
 

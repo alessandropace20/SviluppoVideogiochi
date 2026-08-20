@@ -26,6 +26,7 @@ func _show_screen() -> void:
 	get_tree().paused = true
 
 func _on_retry_pressed() -> void:
+	EventBus.reset_run()
 	get_tree().paused = false
 	visible = false
 	var main = get_tree().current_scene

@@ -4,18 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://dk1i5h0puthii" path="res://resources/sprites/others/New Piskel-1.png.png" id="2_sq44f"]
 [ext_resource type="Texture2D" uid="uid://dtg128vppkgar" path="res://resources/sprites/others/New Piskel-2.png.png" id="3_k7gqu"]
 [ext_resource type="Texture2D" uid="uid://bkjma8v3rln5a" path="res://resources/sprites/others/coin_over.png.png" id="4_k7gqu"]
-[ext_resource type="Script" uid="uid://cw3kii8gc7rcf" path="res://assets/scene/UI/life_bar.gd" id="4_pujoq"]
+[ext_resource type="Script" uid="uid://cw3kii8gc7rcf" path="res://assets/script/life_bar.gd" id="4_pujoq"]
 [ext_resource type="FontFile" uid="uid://bnbiqkk4sdcxk" path="res://resources/fonts/Eazygoin-Regular.ttf" id="5_c4eh1"]
 [ext_resource type="Texture2D" uid="uid://bj511ym4wg77p" path="res://resources/sprites/others/coin_texture_base.png" id="5_pujoq"]
-[ext_resource type="Script" uid="uid://c7bdqn033vwad" path="res://assets/scene/UI/coin_bar.gd" id="7_g20ys"]
+[ext_resource type="Script" uid="uid://c7bdqn033vwad" path="res://assets/script/coin_bar.gd" id="7_g20ys"]
 [ext_resource type="Texture2D" uid="uid://cmgx3acgspgpw" path="res://resources/sprites/others/MAX_COIN.png" id="8_mxi72"]
 [ext_resource type="Script" uid="uid://bsku2yuadw0uk" path="res://assets/script/PauseMenu.gd" id="10_gjir4"]
 [ext_resource type="Texture2D" uid="uid://yt4rrj2ihfev" path="res://resources/sprites/backgrounds/Pause_Menu_BG.png" id="10_x4pe2"]
 [ext_resource type="Texture2D" uid="uid://bx81yklll3pmd" path="res://resources/sprites/buttons/PLAY-Button.png" id="11_gjir4"]
 [ext_resource type="Texture2D" uid="uid://ch4vajgbwsj4g" path="res://resources/sprites/backgrounds/BackGround-NEW.png" id="11_ocx7q"]
 [ext_resource type="Texture2D" uid="uid://o5xumipogx12" path="res://resources/sprites/buttons/PLAY-Pressed-Button.png" id="12_an6oe"]
-[ext_resource type="Texture2D" uid="uid://uhykkpgwc3rh" path="res://resources/sprites/buttons/OPTION-Button.png" id="13_45kn3"]
-[ext_resource type="Texture2D" uid="uid://qpkkxq6tounm" path="res://resources/sprites/buttons/OPTION-Pressed-Button.png" id="14_ocx7q"]
 [ext_resource type="Texture2D" uid="uid://gwctd2qoe5wd" path="res://resources/sprites/buttons/SAVE_NORMAL.png.png" id="15_ns25h"]
 [ext_resource type="Texture2D" uid="uid://ds7av76sgr5wv" path="res://resources/sprites/buttons/QUIT-Button.png" id="15_p5pii"]
 [ext_resource type="Texture2D" uid="uid://cy4db1hc4j2y3" path="res://resources/sprites/buttons/MENU_BUTTON.png" id="16_45kn3"]
@@ -120,8 +118,10 @@ texture = ExtResource("10_x4pe2")
 [node name="Control" type="Control" parent="PauseMenu" unique_id=2136497017]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -2.0
+offset_top = 34.0
+offset_right = 38.0
+offset_bottom = 74.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Control" unique_id=469645480]
 texture_filter = 1
@@ -141,11 +141,6 @@ texture_pressed = ExtResource("12_an6oe")
 layout_mode = 2
 texture_normal = ExtResource("15_ns25h")
 texture_pressed = ExtResource("16_ed4b2")
-
-[node name="Options" type="TextureButton" parent="PauseMenu/Control/VBoxContainer" unique_id=1117314491]
-layout_mode = 2
-texture_normal = ExtResource("13_45kn3")
-texture_pressed = ExtResource("14_ocx7q")
 
 [node name="Menu" type="TextureButton" parent="PauseMenu/Control/VBoxContainer" unique_id=441278806]
 layout_mode = 2
@@ -183,13 +178,12 @@ offset_bottom = -89.0
 [node name="TitleLabel" type="Label" parent="EndScreen/Control" unique_id=817852466]
 texture_filter = 1
 layout_mode = 0
-offset_left = -10.999996
-offset_top = -45.0
-offset_right = 49.000004
-offset_bottom = -30.0
+offset_left = -147.99998
+offset_top = -42.0
+offset_right = -22.086716
+offset_bottom = -27.0
 scale = Vector2(4.1615944, 4.1615944)
 theme_override_fonts/font = ExtResource("5_c4eh1")
-text = "Game Over"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -19,9 +19,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	collision.set_deferred("disabled", true)
 	sprite.play("plus")
-	print("Coin raccolta, valore: ", coin_value, " | total_coins prima: ", EventBus.total_coins)
 	EventBus.add_coins(coin_value)
-	print("total_coins dopo: ", EventBus.total_coins)
 	EventBus.coin_collected.emit(coin_id)
 
 func _on_animation_finished() -> void:

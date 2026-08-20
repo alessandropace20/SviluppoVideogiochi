@@ -898,7 +898,7 @@ size = Vector2(20, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m0lt"]
 size = Vector2(10, 20)
 
-[node name="ChBoss" type="CharacterBody2D" unique_id=52111325]
+[node name="Boss" type="CharacterBody2D" unique_id=52111325 groups=["boss"]]
 collision_layer = 4
 script = ExtResource("1_7gkis")
 
@@ -967,3 +967,6 @@ shape = SubResource("RectangleShape2D_5intj")
 [node name="HitBox_left" type="CollisionShape2D" parent="AttackArea" unique_id=1880299534]
 position = Vector2(-18, -1)
 shape = SubResource("RectangleShape2D_6m0lt")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=336114605]
+bus = &"SFX"

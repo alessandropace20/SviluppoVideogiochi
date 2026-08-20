@@ -206,12 +206,15 @@ func update_health_bar() -> void:
 	health_bar.value = health
 
 func die() -> void:
+	print("BOSS MORTO - emitto boss_defeated")
 	change_state(State.DEAD)
 	velocity = Vector2.ZERO
 	knockback_velocity = Vector2.ZERO
 	disable_all_hitboxes()
 	health_bar.visible = false
-	sprite.play("die") # o sprite.stop() se preferisci il freeze silenzioso
+	sprite.play("die")
+	EventBus.boss_defeated.emit()
+	print("MANDO LA SIGNAL DI SCONFITTA")
 
 func update_facing(dir):
 	if abs(dir.x) > abs(dir.y):

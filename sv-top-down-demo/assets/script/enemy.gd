@@ -103,18 +103,29 @@ func _process_chase() -> void:
 		change_state(State.IDLE)
 		return
 
-	var direction = (player.global_position - global_position).normalized()
+	var direction := (player.global_position - global_position).normalized()
 	update_facing(direction)
-	var distance = global_position.distance_to(player.global_position)
 
-	if distance <= attack_range and attack_cooldown_timer.is_stopped():
-		start_attack()
+	var distance := global_position.distance_to(player.global_position)
+
+	# Siamo abbastanza vicini per attaccare:
+	# il nemico deve fermarsi indipendentemente dal cooldown.
+	if distance <= attack_range:
+		velocity = Vector2.ZERO
+		move_and_slide()
+
+		# Se il cooldown è terminato, attacca.
+		if attack_cooldown_timer.is_stopped():
+			start_attack()
+
 		return
 
+	# Il player è troppo lontano: continua a inseguirlo.
 	var difficulty_speed = speed * DifficultyManager.get_enemy_speed_multiplier()
 	velocity = direction * difficulty_speed
-	sprite.play("run_" + facing) # o "run_" + facing se disponibile
-	move_and_slide()
+
+	sprite.play("run_" + facing)
+	move_and_slide() 
 
 func start_attack() -> void:
 	change_state(State.ATTACK)

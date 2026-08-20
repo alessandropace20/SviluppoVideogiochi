@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var play_button: TextureButton = $Control/VBoxContainer/Play
-@onready var options_button: TextureButton = $Control/VBoxContainer/Options
 @onready var quit_button: TextureButton = $Control/VBoxContainer/Quit
 @onready var menu_button: TextureButton = $Control/VBoxContainer/Menu
 @onready var save_button: TextureButton = $Control/VBoxContainer/Save
