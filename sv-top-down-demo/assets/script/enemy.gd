@@ -12,6 +12,10 @@ extends CharacterBody2D
 @export var knockback_strength := 80.0
 @export var knockback_friction := 600.0  # quanto velocemente il knockback rallenta
 
+@export var attack_sound: AudioStream
+@export var hurt_sound: AudioStream
+@export var death_sound: AudioStream
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea
 @onready var health_bar: TextureProgressBar = $UI/TextureProgressBar
@@ -22,6 +26,8 @@ extends CharacterBody2D
 	"up": $AttackArea/HitBox_up,
 	"down": $AttackArea/HitBox_down
 }
+
+@onready var sfx: AudioStreamPlayer2D = $SFX
 
 const ACTIVE_FRAME := 1
 const END_FRAME := 3
@@ -44,11 +50,7 @@ var hurt_timer: Timer
 func _ready():
 	if enemy_id == "":
 		enemy_id = name
-	print("ENEMY SPAWNED: ", name)
-
-	print("POSITION: ", global_position)
-	print("SPRITE: ", sprite)
-	print("SPRITE VISIBLE: ", sprite.visible)
+		
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
@@ -130,6 +132,7 @@ func _process_chase() -> void:
 func start_attack() -> void:
 	change_state(State.ATTACK)
 	attack_area.damage = attack_damage
+	play_sfx(attack_sound)
 	sprite.play("attack_" + facing)
 
 func _on_frame_changed() -> void:
@@ -182,6 +185,7 @@ func enter_hurt(source_position: Vector2, knockback_force: float = -1.0) -> void
 
 	change_state(State.HURT)
 	sprite.play("hurt_" + facing)
+	play_sfx(hurt_sound)
 	hurt_timer.start(hurt_duration)
 
 func _on_hurt_timeout() -> void:
@@ -221,6 +225,7 @@ func update_health_bar() -> void:
 	health_bar.value = health
 
 func die() -> void:
+	play_sfx(death_sound)
 	change_state(State.DEAD)
 	velocity = Vector2.ZERO
 	knockback_velocity = Vector2.ZERO
@@ -250,3 +255,9 @@ func _on_reaction_timeout() -> void:
 func _on_detection_area_body_exited(body):
 	if body == player:
 		player = null
+
+func play_sfx(stream: AudioStream) -> void:
+	if stream == null:
+		return
+	sfx.stream = stream
+	sfx.play()

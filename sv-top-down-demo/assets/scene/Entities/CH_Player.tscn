@@ -3,14 +3,17 @@
 [ext_resource type="Script" uid="uid://4dxvcfxc1w35" path="res://assets/script/player.gd" id="1_bliqt"]
 [ext_resource type="Texture2D" uid="uid://b8v7a48fbh516" path="res://resources/sprites/Player/Sprites/IDLE/idle_down.png" id="1_ifgln"]
 [ext_resource type="Texture2D" uid="uid://831ho8ajmrv3" path="res://resources/sprites/Player/Sprites/IDLE/idle_left.png" id="2_2ld43"]
+[ext_resource type="AudioStream" uid="uid://c7vr00dg1aooj" path="res://audio/sfx/player_attack.wav" id="2_6r8b1"]
 [ext_resource type="Texture2D" uid="uid://db8womv1uoqbq" path="res://resources/sprites/Player/Sprites/ATTACK 2/attack2_down.png" id="2_esiyi"]
 [ext_resource type="Texture2D" uid="uid://djeq6ti2gsv6" path="res://resources/sprites/Player/Sprites/ATTACK 1/attack1_down.png" id="2_fljsk"]
 [ext_resource type="Texture2D" uid="uid://dd2mwr63gn88s" path="res://resources/sprites/Player/shadow_char.png" id="2_gtmll"]
 [ext_resource type="Texture2D" uid="uid://cmd1mr663x2qb" path="res://resources/sprites/Player/Sprites/IDLE/idle_right.png" id="3_c6oel"]
 [ext_resource type="Texture2D" uid="uid://cx078bju2uqpf" path="res://resources/sprites/Player/Sprites/ATTACK 2/attack2_left.png" id="3_gtmll"]
 [ext_resource type="Texture2D" uid="uid://ba5u1y3use2ul" path="res://resources/sprites/Player/Sprites/ATTACK 1/attack1_left.png" id="3_vc0hj"]
+[ext_resource type="AudioStream" uid="uid://cdk7ccdb3s8cb" path="res://audio/sfx/player_hurt.wav" id="3_vj3rh"]
 [ext_resource type="Texture2D" uid="uid://b2ysybcugoega" path="res://resources/sprites/Player/Sprites/ATTACK 1/attack1_up.png" id="4_11yx8"]
 [ext_resource type="Texture2D" uid="uid://dqka2pnlueac0" path="res://resources/sprites/Player/Sprites/IDLE/idle_up.png" id="4_b2mue"]
+[ext_resource type="AudioStream" uid="uid://bpqe663dvye5x" path="res://audio/sfx/player_boss_death.wav" id="4_ic766"]
 [ext_resource type="Texture2D" uid="uid://e8mgs1xp72nc" path="res://resources/sprites/Player/Sprites/ATTACK 1/attack1_right.png" id="4_vc0hj"]
 [ext_resource type="Texture2D" uid="uid://cnf275khhi12" path="res://resources/sprites/Player/Sprites/ATTACK 2/attack2_right.png" id="4_xrk3f"]
 [ext_resource type="Texture2D" uid="uid://pilcsy653ahp" path="res://resources/sprites/Player/Sprites/RUN/run_down.png" id="5_2ld43"]
@@ -1276,6 +1279,9 @@ size = Vector2(44, 20)
 collision_layer = 10
 collision_mask = 11
 script = ExtResource("1_bliqt")
+attack_sound = ExtResource("2_6r8b1")
+hurt_sound = ExtResource("3_vj3rh")
+death_sound = ExtResource("4_ic766")
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="." unique_id=991897577]
 modulate = Color(1, 1, 1, 0.4509804)

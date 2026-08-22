@@ -100,7 +100,7 @@ offset_right = 408.0
 offset_bottom = -160.0
 theme = SubResource("Theme_hr15s")
 
-[node name="SFX" type="HSlider" parent="OptionsPanel" unique_id=1638062298]
+[node name="SFXSlider" type="HSlider" parent="OptionsPanel" unique_id=1638062298]
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0

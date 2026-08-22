@@ -7721,3 +7721,4 @@ tile_map_data = PackedByteArray("AAD0/xoAAQAYAAQAAAD0/xsAAQAYAAUAAAD0/xwAAQAYAAY
 tile_set = SubResource("TileSet_volit")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1309515521]
+bus = &"Music"

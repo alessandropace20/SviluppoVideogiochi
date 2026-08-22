@@ -9,6 +9,10 @@ extends CharacterBody2D
 @export var knockback_strength := 100.0
 @export var knockback_friction := 600.0
 
+@export var attack_sound: AudioStream
+@export var hurt_sound: AudioStream
+@export var death_sound: AudioStream
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area: Area2D = $AttackArea
 @onready var hitboxes := {
@@ -17,6 +21,8 @@ extends CharacterBody2D
 	"up": $AttackArea/HitBox_up,
 	"down": $AttackArea/HitBox_down
 }
+
+@onready var sfx: AudioStreamPlayer2D = $SFX
 
 const ACTIVE_FRAME := 1
 const END_FRAME := 3
@@ -78,6 +84,7 @@ func start_attack(attack_name: String, damage: int) -> void:
 	current_attack_damage = damage
 	attack_area.damage = damage
 	sprite.play(attack_name + "_" + facing)
+	play_sfx(attack_sound)
 
 func _on_frame_changed() -> void:
 	if not is_attacking or not sprite.animation.begins_with("attack"):
@@ -137,6 +144,7 @@ func enter_hurt(source_position: Vector2, knockback_force: float = -1.0) -> void
 
 	is_hurt = true
 	sprite.play("hurt_" + facing)
+	play_sfx(hurt_sound)
 	hurt_timer.start(hurt_duration)
 
 func _on_hurt_timeout() -> void:
@@ -154,7 +162,6 @@ func take_damage(damage: int, source_position: Vector2 = global_position, knockb
 	if health < 0:
 		health = 0
 	EventBus.player_health_changed.emit(health, max_health)
-	print("Il giocatore ha subito ", damage, " danni. HP: ", health)
 	if health == 0:
 		die()
 	else:
@@ -180,4 +187,11 @@ func die() -> void:
 	velocity = Vector2.ZERO
 	knockback_velocity = Vector2.ZERO
 	disable_all_hitboxes()
+	play_sfx(death_sound)
 	sprite.play("die")
+
+func play_sfx(stream: AudioStream) -> void:
+	if stream == null:
+		return
+	sfx.stream = stream
+	sfx.play()

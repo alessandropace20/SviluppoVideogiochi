@@ -6,14 +6,22 @@ extends Node2D
 @onready var ui: CanvasLayer = $Game/UI
 @onready var menu_layer: CanvasLayer = $MenuLayer
 
+@export var menu_music: AudioStream
+@export var levelDemo_music: AudioStream
+
+@onready var music: AudioStreamPlayer2D = $AudioStreamPlayer
+
 var current_level: Node = null
 
-
 func _ready() -> void:
+	music.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
 	
 	ui.visible = false
 	menu_layer.visible = true
+	
+	music.stream = menu_music
+	music.play()
 
 	menu_layer.play_requested.connect(_on_play_requested)
 	menu_layer.load_requested.connect(_on_load_requested)
@@ -36,10 +44,6 @@ func _on_load_requested() -> void:
 
 
 func _start_level() -> void:
-	print("========== START LEVEL ==========")
-	print("1 - Main inside tree: ", is_inside_tree())
-	print("1 - Tree: ", get_tree())
-
 	if level_scene == null:
 		push_error("level_scene non assegnata!")
 		return
@@ -49,7 +53,12 @@ func _start_level() -> void:
 	current_level = level_scene.instantiate()
 
 	level_container.add_child(current_level)
-
+	
+	music.stop()
+	music.stream = levelDemo_music
+	music.play()
+	print("inizia la musica")
+	
 	ui.visible = true
 	menu_layer.visible = false
 
@@ -61,7 +70,9 @@ func return_to_menu() -> void:
 
 	ui.visible = false
 	menu_layer.visible = true
-
+	music.stop()
+	play_music(menu_music)
+	print("inizia la musica")
 	get_tree().paused = true
 
 
@@ -69,3 +80,9 @@ func unload_current_level() -> void:
 	if current_level != null:
 		current_level.queue_free()
 		current_level = null
+
+func play_music(stream: AudioStream) -> void:
+	if stream == null:
+		return
+	music.stream = stream
+	music.play()

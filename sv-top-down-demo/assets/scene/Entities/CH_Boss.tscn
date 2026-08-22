@@ -2,7 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bua1kww3fkbdn" path="res://assets/script/boss.gd" id="1_7gkis"]
 [ext_resource type="Texture2D" uid="uid://u6oamer6p7n0" path="res://resources/sprites/enemy_boss/Orc2/Orc2_attack/orc2_attack_full.png" id="1_cfvrx"]
+[ext_resource type="AudioStream" uid="uid://bpqe663dvye5x" path="res://audio/sfx/player_boss_death.wav" id="2_fhtux"]
+[ext_resource type="AudioStream" uid="uid://ca8aj2kx51nvr" path="res://audio/sfx/boss_attack.wav" id="2_fwml1"]
 [ext_resource type="Texture2D" uid="uid://dcaje0csbtras" path="res://resources/sprites/others/die.png" id="3_7gkis"]
+[ext_resource type="AudioStream" uid="uid://c65ukh8m2w2lm" path="res://audio/sfx/enemy_boss_hurt.wav" id="3_oi12o"]
 [ext_resource type="Texture2D" uid="uid://dwij8mlcd27n8" path="res://resources/sprites/enemy_boss/Orc2/Orc2_hurt/orc2_hurt_full.png" id="3_rwm1a"]
 [ext_resource type="Texture2D" uid="uid://ckvcvpawrio42" path="res://resources/sprites/enemy_boss/Orc2/Orc2_idle/orc2_idle_full.png" id="4_w51hc"]
 [ext_resource type="Texture2D" uid="uid://di0fmge0c3ec5" path="res://resources/sprites/enemy_boss/Orc2/Orc2_run/orc2_run_full.png" id="5_52pwq"]
@@ -901,6 +904,9 @@ size = Vector2(10, 20)
 [node name="Boss" type="CharacterBody2D" unique_id=52111325 groups=["boss"]]
 collision_layer = 4
 script = ExtResource("1_7gkis")
+attack_sound = ExtResource("2_fwml1")
+hurt_sound = ExtResource("3_oi12o")
+death_sound = ExtResource("2_fhtux")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1090746450]
 texture_filter = 1

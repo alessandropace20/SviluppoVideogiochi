@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://m8c2nmi0fk4l" path="res://resources/sprites/enemy_base/orc1_attack_full.png" id="1_ag7g8"]
 [ext_resource type="Script" uid="uid://ppt0qcpqarme" path="res://assets/script/enemy.gd" id="1_wwnpu"]
+[ext_resource type="AudioStream" uid="uid://c7vr00dg1aooj" path="res://audio/sfx/player_attack.wav" id="2_3vn1f"]
 [ext_resource type="Texture2D" uid="uid://c57nqget5t8iy" path="res://resources/sprites/enemy_base/orc1_idle_full.png" id="2_ug7bh"]
+[ext_resource type="AudioStream" uid="uid://c65ukh8m2w2lm" path="res://audio/sfx/enemy_boss_hurt.wav" id="3_54y85"]
 [ext_resource type="Texture2D" uid="uid://b7e5xbg0q7qeo" path="res://resources/sprites/enemy_base/orc1_death_full.png" id="3_sraww"]
 [ext_resource type="Texture2D" uid="uid://qcxhlp6wjafj" path="res://resources/sprites/enemy_base/orc1_run_full.png" id="3_ug7bh"]
 [ext_resource type="Texture2D" uid="uid://cjraj4iairuxs" path="res://resources/sprites/enemy_base/orc1_hurt_full.png" id="4_d4gx1"]
@@ -1034,6 +1036,8 @@ size = Vector2(10, 20)
 [node name="Orc_1" type="CharacterBody2D" unique_id=1054063316 groups=["enemies"]]
 collision_layer = 4
 script = ExtResource("1_wwnpu")
+attack_sound = ExtResource("2_3vn1f")
+hurt_sound = ExtResource("3_54y85")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1645174496]
 texture_filter = 1

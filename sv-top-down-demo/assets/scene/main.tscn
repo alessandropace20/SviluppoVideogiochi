@@ -3,11 +3,15 @@
 [ext_resource type="Script" uid="uid://dtrumqxuqvts6" path="res://assets/script/main.gd" id="1_0nmyk"]
 [ext_resource type="PackedScene" uid="uid://bstyon1lq203s" path="res://assets/scene/UI/ui.tscn" id="2_0nmyk"]
 [ext_resource type="PackedScene" uid="uid://ddo5xo7oalik8" path="res://assets/scene/levels/LevelDemo.tscn" id="2_0vk0l"]
+[ext_resource type="AudioStream" uid="uid://1vgnue77tmkk" path="res://audio/music/menu_music.wav" id="3_uu0fw"]
 [ext_resource type="PackedScene" uid="uid://duprcktbuey8f" path="res://assets/scene/UI/MainMenu.tscn" id="4_0vk0l"]
+[ext_resource type="AudioStream" uid="uid://chjoisqi0ny2r" path="res://audio/music/levelDemo_music.wav" id="4_fw18y"]
 
 [node name="Main" type="Node2D" unique_id=1135119149]
 script = ExtResource("1_0nmyk")
 level_scene = ExtResource("2_0vk0l")
+menu_music = ExtResource("3_uu0fw")
+levelDemo_music = ExtResource("4_fw18y")
 
 [node name="Game" type="Node" parent="." unique_id=1916984996]
 
@@ -16,3 +20,7 @@ level_scene = ExtResource("2_0vk0l")
 [node name="UI" parent="Game" unique_id=312769223 instance=ExtResource("2_0nmyk")]
 
 [node name="MenuLayer" parent="." unique_id=679055312 instance=ExtResource("4_0vk0l")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2142250243]
+volume_db = -40.0
+bus = &"Music"

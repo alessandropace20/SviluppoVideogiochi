@@ -15,6 +15,10 @@ run/main_scene="uid://b4g183kh0ppu"
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 
+[audio]
+
+buses/default_bus_layout="uid://c32u3gm5kw6ec"
+
 [autoload]
 
 EventBus="*uid://du3osbdtk33as"

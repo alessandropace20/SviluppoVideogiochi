@@ -18,6 +18,7 @@ signal load_requested
 @onready var hard_button: TextureButton = $OptionsPanel/HBoxContainer/Hard
 
 @onready var music_slider: HSlider = $OptionsPanel/MusicSlider
+@onready var sfx_slider: HSlider = $OptionsPanel/SFXSlider
 @onready var options_back_button: TextureButton = $OptionsPanel/BackButton
 
 
@@ -47,6 +48,9 @@ func _ready() -> void:
 	# Audio.
 	music_slider.value_changed.connect(_on_music_slider_changed)
 	music_slider.value = AudioManager.music_volume_linear
+	
+	sfx_slider.value_changed.connect(func(v): AudioManager.set_sfx_volume(v))
+	sfx_slider.value = AudioManager.sfx_volume_linear
 
 
 func _request_play() -> void:

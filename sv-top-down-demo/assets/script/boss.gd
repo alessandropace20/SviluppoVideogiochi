@@ -11,6 +11,10 @@ extends CharacterBody2D
 @export var knockback_strength := 130.0
 @export var knockback_friction := 600.0  # quanto velocemente il knockback rallenta
 
+@export var attack_sound: AudioStream
+@export var hurt_sound: AudioStream
+@export var death_sound: AudioStream
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_area: Area2D = $DetectionArea
 @onready var health_bar: TextureProgressBar = $UI/TextureProgressBar
@@ -21,6 +25,7 @@ extends CharacterBody2D
 	"up": $AttackArea/HitBox_up,
 	"down": $AttackArea/HitBox_down
 }
+@onready var sfx: AudioStreamPlayer2D = $SFX
 
 const ACTIVE_FRAME := 1
 const END_FRAME := 3
@@ -40,11 +45,6 @@ var attack_cooldown_timer: Timer
 var hurt_timer: Timer
 
 func _ready():
-	print("ENEMY SPAWNED: ", name)
-
-	print("POSITION: ", global_position)
-	print("SPRITE: ", sprite)
-	print("SPRITE VISIBLE: ", sprite.visible)
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
@@ -99,23 +99,35 @@ func _process_chase() -> void:
 		change_state(State.IDLE)
 		return
 
-	var direction = (player.global_position - global_position).normalized()
+	var direction := (player.global_position - global_position).normalized()
 	update_facing(direction)
-	var distance = global_position.distance_to(player.global_position)
 
-	if distance <= attack_range and attack_cooldown_timer.is_stopped():
-		start_attack()
+	var distance := global_position.distance_to(player.global_position)
+
+	# Siamo abbastanza vicini per attaccare:
+	# il nemico deve fermarsi indipendentemente dal cooldown.
+	if distance <= attack_range:
+		velocity = Vector2.ZERO
+		move_and_slide()
+
+		# Se il cooldown è terminato, attacca.
+		if attack_cooldown_timer.is_stopped():
+			start_attack()
+
 		return
 
+	# Il player è troppo lontano: continua a inseguirlo.
 	var difficulty_speed = speed * DifficultyManager.get_enemy_speed_multiplier()
 	velocity = direction * difficulty_speed
-	sprite.play("run_" + facing) # o "run_" + facing se disponibile
-	move_and_slide()
+
+	sprite.play("run_" + facing)
+	move_and_slide() 
 
 func start_attack() -> void:
 	change_state(State.ATTACK)
 	attack_area.damage = attack_damage
 	sprite.play("attack_" + facing)
+	play_sfx(attack_sound)
 
 func _on_frame_changed() -> void:
 	if state != State.ATTACK or not sprite.animation.begins_with("attack"):
@@ -167,6 +179,7 @@ func enter_hurt(source_position: Vector2, knockback_force: float = -1.0) -> void
 
 	change_state(State.HURT)
 	sprite.play("hurt_" + facing)
+	play_sfx(hurt_sound)
 	hurt_timer.start(hurt_duration)
 
 func _on_hurt_timeout() -> void:
@@ -206,7 +219,7 @@ func update_health_bar() -> void:
 	health_bar.value = health
 
 func die() -> void:
-	print("BOSS MORTO - emitto boss_defeated")
+	play_sfx(death_sound)
 	change_state(State.DEAD)
 	velocity = Vector2.ZERO
 	knockback_velocity = Vector2.ZERO
@@ -214,7 +227,6 @@ func die() -> void:
 	health_bar.visible = false
 	sprite.play("die")
 	EventBus.boss_defeated.emit()
-	print("MANDO LA SIGNAL DI SCONFITTA")
 
 func update_facing(dir):
 	if abs(dir.x) > abs(dir.y):
@@ -237,3 +249,9 @@ func _on_reaction_timeout() -> void:
 func _on_detection_area_body_exited(body):
 	if body == player:
 		player = null
+
+func play_sfx(stream: AudioStream) -> void:
+	if stream == null:
+		return
+	sfx.stream = stream
+	sfx.play()
