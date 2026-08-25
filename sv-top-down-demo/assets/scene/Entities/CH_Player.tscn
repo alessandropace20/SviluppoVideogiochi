@@ -1295,7 +1295,7 @@ texture_filter = 1
 position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.1125001, 1.1125)
 sprite_frames = SubResource("SpriteFrames_tud5j")
-animation = &"attack2_left"
+animation = &"idle_down"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=245258795]
 zoom = Vector2(2.5, 2.5)

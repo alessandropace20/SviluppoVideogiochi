@@ -9,6 +9,7 @@ var sfx_volume_linear: float = 1.0
 @onready var music_player: AudioStreamPlayer = AudioStreamPlayer.new()
 
 func _ready() -> void:
+	music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	music_player.bus = MUSIC_BUS
 	add_child(music_player)
 
