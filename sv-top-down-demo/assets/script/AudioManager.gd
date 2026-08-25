@@ -3,7 +3,7 @@ extends Node
 const MUSIC_BUS := "Music"
 const SFX_BUS := "SFX"
 
-var music_volume_linear: float = 1.0
+var music_volume_linear: float = 0.2
 var sfx_volume_linear: float = 1.0
 
 @onready var music_player: AudioStreamPlayer = AudioStreamPlayer.new()

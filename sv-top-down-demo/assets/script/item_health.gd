@@ -1,8 +1,10 @@
 extends Area2D
 @onready var sprite: AnimatedSprite2D = $Health  # rinomina secondo il nome reale del nodo
 @onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var sfx: AudioStreamPlayer2D = $SFX
 
-@export var heal_amount: int = 20
+@export var heal_amount: int = 25
+@export var heal_sound: AudioStream
 
 func _ready() -> void:
 	sprite.play("default")  # o il nome dell'animazione di partenza che hai per questo item
@@ -15,6 +17,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 	collision.set_deferred("disabled", true)
 	sprite.play("plus")
+	play_sfx(heal_sound)
 
 	if body.has_method("heal"):
 		body.heal(heal_amount)
@@ -22,3 +25,9 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_animation_finished() -> void:
 	if sprite.animation == "plus":
 		queue_free()
+
+func play_sfx(stream: AudioStream) -> void:
+	if stream == null:
+		return
+	sfx.stream = stream
+	sfx.play()

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://r5w6msry0o3f" path="res://assets/script/item_coin.gd" id="1_6eyml"]
 [ext_resource type="Texture2D" uid="uid://cs1ovcm85smyd" path="res://resources/sprites/items/Coin_tiles.png" id="1_y70ne"]
 [ext_resource type="Texture2D" uid="uid://bq64rwhykgeg" path="res://resources/sprites/items/plus_coin.png" id="2_6eyml"]
+[ext_resource type="AudioStream" uid="uid://bj87kdbl30gqs" path="res://audio/sfx/Coin_Collect.wav" id="2_vsqx4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lva0u"]
 atlas = ExtResource("2_6eyml")
@@ -178,6 +179,7 @@ radius = 8.0
 collision_layer = 10
 collision_mask = 2
 script = ExtResource("1_6eyml")
+coin_collect = ExtResource("2_vsqx4")
 
 [node name="Coin" type="AnimatedSprite2D" parent="." unique_id=1901695061]
 texture_filter = 1
@@ -187,3 +189,6 @@ animation = &"rotate"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696049432]
 shape = SubResource("CircleShape2D_lfx1h")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1804516429]
+bus = &"SFX"

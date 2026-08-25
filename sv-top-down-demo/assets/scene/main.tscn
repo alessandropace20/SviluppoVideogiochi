@@ -21,6 +21,6 @@ levelDemo_music = ExtResource("4_fw18y")
 
 [node name="MenuLayer" parent="." unique_id=679055312 instance=ExtResource("4_0vk0l")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2142250243]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1489844914]
 volume_db = -40.0
 bus = &"Music"

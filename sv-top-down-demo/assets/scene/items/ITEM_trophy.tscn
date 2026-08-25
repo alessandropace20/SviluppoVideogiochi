@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ecpp5vxlobjr" path="res://assets/script/item_trophy.gd" id="1_5nqlv"]
 [ext_resource type="Texture2D" uid="uid://c20jwwtdnbdv" path="res://resources/sprites/items/New Piskel.png" id="1_636uu"]
 [ext_resource type="Texture2D" uid="uid://pk1iocktf06v" path="res://resources/sprites/items/Trophy.png" id="1_wokom"]
+[ext_resource type="AudioStream" uid="uid://rruj1hfhsrq2" path="res://audio/sfx/trophy_sound.wav" id="2_0rycl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5nqlv"]
 atlas = ExtResource("1_636uu")
@@ -69,6 +70,7 @@ radius = 69.260376
 collision_layer = 11
 collision_mask = 11
 script = ExtResource("1_5nqlv")
+trophy_sound = ExtResource("2_0rycl")
 
 [node name="Shadow" type="AnimatedSprite2D" parent="." unique_id=978149200]
 self_modulate = Color(1, 1, 1, 0.52156866)
@@ -87,3 +89,6 @@ frame_progress = 0.32037464
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1487662618]
 shape = SubResource("CircleShape2D_18602")
+
+[node name="SFX" type="AudioStreamPlayer2D" parent="." unique_id=1340214203]
+bus = &"SFX"

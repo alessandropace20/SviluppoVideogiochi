@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://bsiovaptgm70k" path="res://assets/script/EndScreen.gd" id="23_8wap8"]
 [ext_resource type="Texture2D" uid="uid://cq54t47ixhm8o" path="res://resources/sprites/buttons/RETRY_Button.png" id="23_y2caj"]
 [ext_resource type="Texture2D" uid="uid://di0mft5xfg5m" path="res://resources/sprites/buttons/RETRY_Pressed.png" id="24_8wap8"]
+[ext_resource type="Texture2D" uid="uid://cg4vuccr01sqr" path="res://resources/sprites/backgrounds/New Piskel-2.png.png" id="25_8wap8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mxi72"]
 
@@ -157,23 +158,25 @@ position = Vector2(577, 308)
 script = ExtResource("23_8wap8")
 
 [node name="blur" type="Sprite2D" parent="EndScreen" unique_id=1724108453]
-modulate = Color(0.019130332, 0.019130332, 0.019130332, 0.28627452)
+modulate = Color(0, 0.465232, 0.46570212, 1)
+texture_filter = 1
 position = Vector2(-4, 17)
-scale = Vector2(1.0815378, 1.0815378)
+scale = Vector2(1.0203406, 1.0203406)
 texture = ExtResource("11_ocx7q")
 
 [node name="BackGround" type="Sprite2D" parent="EndScreen" unique_id=1848963698]
 texture_filter = 1
+position = Vector2(-2, 55)
 scale = Vector2(1.6790042, 1.6790042)
 texture = ExtResource("10_x4pe2")
 
 [node name="Control" type="Control" parent="EndScreen" unique_id=1852288117]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -109.0
-offset_top = -129.0
-offset_right = -69.0
-offset_bottom = -89.0
+offset_left = -112.0
+offset_top = -64.0
+offset_right = -72.0
+offset_bottom = -24.0
 
 [node name="TitleLabel" type="Label" parent="EndScreen/Control" unique_id=817852466]
 texture_filter = 1
@@ -210,3 +213,9 @@ texture_pressed = ExtResource("17_ocx7q")
 layout_mode = 2
 texture_normal = ExtResource("15_p5pii")
 texture_pressed = ExtResource("16_ns25h")
+
+[node name="Orc" type="Sprite2D" parent="EndScreen" unique_id=1448101583]
+texture_filter = 1
+position = Vector2(-13.000002, 28)
+scale = Vector2(1.494831, 1.4911503)
+texture = ExtResource("25_8wap8")

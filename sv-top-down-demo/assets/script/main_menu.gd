@@ -11,14 +11,11 @@ signal load_requested
 @onready var play_button: TextureButton = $MainMenu/VBoxContainer/PlayButton
 @onready var load_button: TextureButton = $MainMenu/VBoxContainer/LoadButton
 @onready var options_button: TextureButton = $MainMenu/VBoxContainer/OptionsButton
-@onready var quit_button: TextureButton = $MainMenu/VBoxContainer/QuitButton
+@onready var quit_button: TextureButton =  $MainMenu/VBoxContainer/QuitButton
 
 @onready var easy_button: TextureButton = $OptionsPanel/HBoxContainer/Easy
 @onready var normal_button: TextureButton = $OptionsPanel/HBoxContainer/Normal
 @onready var hard_button: TextureButton = $OptionsPanel/HBoxContainer/Hard
-
-@onready var music_slider: HSlider = $OptionsPanel/MusicSlider
-@onready var sfx_slider: HSlider = $OptionsPanel/SFXSlider
 @onready var options_back_button: TextureButton = $OptionsPanel/BackButton
 
 
@@ -45,12 +42,6 @@ func _ready() -> void:
 	easy_button.pressed.connect(_on_easy_pressed)
 	normal_button.pressed.connect(_on_normal_pressed)
 	hard_button.pressed.connect(_on_hard_pressed)
-	# Audio.
-	music_slider.value_changed.connect(_on_music_slider_changed)
-	music_slider.value = AudioManager.music_volume_linear
-	
-	sfx_slider.value_changed.connect(func(v): AudioManager.set_sfx_volume(v))
-	sfx_slider.value = AudioManager.sfx_volume_linear
 
 
 func _request_play() -> void:
@@ -71,11 +62,6 @@ func _open_main_menu() -> void:
 
 func _quit_game() -> void:
 	get_tree().quit()
-
-
-func _on_music_slider_changed(value: float) -> void:
-	AudioManager.set_music_volume(value)
-
 
 func show_panel(panel_name: String) -> void:
 	for key in panels:

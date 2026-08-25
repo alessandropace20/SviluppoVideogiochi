@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://uhykkpgwc3rh" path="res://resources/sprites/buttons/OPTION-Button.png" id="7_8g6fe"]
 [ext_resource type="Texture2D" uid="uid://dcqq4qdlxn6up" path="res://resources/sprites/buttons/QUIT-Pressed-Button.png" id="7_agld2"]
 [ext_resource type="Texture2D" uid="uid://qpkkxq6tounm" path="res://resources/sprites/buttons/OPTION-Pressed-Button.png" id="8_lva74"]
-[ext_resource type="Texture2D" uid="uid://dh5qgnycbnx8k" path="res://resources/sprites/backgrounds/NEWOPTIONS.png" id="11_hr15s"]
+[ext_resource type="Texture2D" uid="uid://dyu60xptqgc42" path="res://resources/sprites/backgrounds/NEWOPTIONS-1.png.png" id="11_grccc"]
 [ext_resource type="Texture2D" uid="uid://bo6140v5m313m" path="res://resources/sprites/buttons/BACK.png" id="12_wce3t"]
 [ext_resource type="Texture2D" uid="uid://daym0mkejro1x" path="res://resources/sprites/buttons/BACK_Pressed.png" id="13_pnxrn"]
 [ext_resource type="Texture2D" uid="uid://mdfnobpxph5r" path="res://resources/sprites/buttons/NORMAL_Normal.png" id="14_a1sel"]
@@ -20,8 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://dwlfcblkhd2d5" path="res://resources/sprites/buttons/EASY_Toggle.png" id="17_awn8f"]
 [ext_resource type="Texture2D" uid="uid://ck6hooca5i1e8" path="res://resources/sprites/buttons/HARD_Normal.png" id="18_owpw5"]
 [ext_resource type="Texture2D" uid="uid://cpuhd6qjgbrpf" path="res://resources/sprites/buttons/HARD_Toggle.png" id="19_6y8hm"]
-
-[sub_resource type="Theme" id="Theme_hr15s"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=679055312]
 script = ExtResource("1_lva74")
@@ -78,7 +76,7 @@ offset_bottom = 840.0
 texture_filter = 1
 position = Vector2(96, -464)
 scale = Vector2(1.473236, 1.5277455)
-texture = ExtResource("11_hr15s")
+texture = ExtResource("11_grccc")
 
 [node name="BackButton" type="TextureButton" parent="OptionsPanel" unique_id=993734445]
 texture_filter = 1
@@ -91,29 +89,13 @@ scale = Vector2(1.9034474, 2.161914)
 texture_normal = ExtResource("12_wce3t")
 texture_pressed = ExtResource("13_pnxrn")
 
-[node name="MusicSlider" type="HSlider" parent="OptionsPanel" unique_id=1221867173]
-texture_filter = 6
-layout_mode = 0
-offset_left = 24.0
-offset_top = -224.0
-offset_right = 408.0
-offset_bottom = -160.0
-theme = SubResource("Theme_hr15s")
-
-[node name="SFXSlider" type="HSlider" parent="OptionsPanel" unique_id=1638062298]
-texture_filter = 1
-layout_mode = 0
-offset_left = 16.0
-offset_top = -424.0
-offset_right = 412.0
-offset_bottom = -352.0
-
 [node name="HBoxContainer" type="HBoxContainer" parent="OptionsPanel" unique_id=1557351896]
 layout_mode = 0
-offset_left = -232.0
-offset_top = -600.0
-offset_right = -192.0
-offset_bottom = -560.0
+offset_left = -344.0
+offset_top = -504.00003
+offset_right = 264.0
+offset_bottom = -392.00003
+scale = Vector2(1.4154607, 1.4154607)
 
 [node name="Easy" type="TextureButton" parent="OptionsPanel/HBoxContainer" unique_id=1204728922]
 layout_mode = 2

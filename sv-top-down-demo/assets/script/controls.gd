@@ -7,9 +7,9 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 
-func _on_play_pressed() -> void:
+func _on_play_pressed() -> void: 
 	EventBus.reset_run()
-	get_tree().change_scene_to_file("res://assets/scene/main_level/Level.tscn")  # aggiorna il path alla tua scena principale
+	get_tree().change_scene_to_file("res://assets/scene/levels/LevelDemo.tscn")  # aggiorna il path alla tua scena principale
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

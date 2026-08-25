@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c36wuepe8fh6n"
-path="res://.godot/imported/Health.png-e53fdc286096ec5d0180da581730d993.ctex"
+uid="uid://luouqut0nap8"
+path="res://.godot/imported/minecraft_health.png-30897b1372ad5c19203c296689c8dd2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/sprites/items/Health.png"
-dest_files=["res://.godot/imported/Health.png-e53fdc286096ec5d0180da581730d993.ctex"]
+source_file="res://resources/sprites/items/minecraft_health.png"
+dest_files=["res://.godot/imported/minecraft_health.png-30897b1372ad5c19203c296689c8dd2c.ctex"]
 
 [params]
 

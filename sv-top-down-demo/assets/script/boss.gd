@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var attack_range := 30.0
 @export var attack_damage := 30
 @export var attack_cooldown := 2.0
-@export var max_health := 200
+@export var max_health := 20
 @export var reaction_time := 0.5
 
 @export var hurt_duration := 0.3
