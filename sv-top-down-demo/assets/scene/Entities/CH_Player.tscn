@@ -1194,7 +1194,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hs2l3")
 }],
-"loop": false,
+"loop": true,
 "name": &"run_left",
 "speed": 10.0
 }, {
@@ -1252,7 +1252,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rje4k")
 }],
-"loop": false,
+"loop": true,
 "name": &"run_up",
 "speed": 10.0
 }]
@@ -1295,11 +1295,14 @@ texture_filter = 1
 position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.1125001, 1.1125)
 sprite_frames = SubResource("SpriteFrames_tud5j")
-animation = &"idle_down"
+animation = &"run_left"
+frame = 7
+frame_progress = 0.7300332
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=245258795]
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1394386328]
 position = Vector2(0, 15)

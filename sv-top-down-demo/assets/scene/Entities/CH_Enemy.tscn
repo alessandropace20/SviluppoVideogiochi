@@ -1020,6 +1020,7 @@ size = Vector2(16, 7)
 radius = 88.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0ljqv"]
+height = 34.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsvm7"]
 size = Vector2(12, 20)
@@ -1041,6 +1042,7 @@ hurt_sound = ExtResource("3_54y85")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1645174496]
 texture_filter = 1
+scale = Vector2(1.2555062, 1.2555062)
 sprite_frames = SubResource("SpriteFrames_rp74u")
 animation = &"idle_down"
 
@@ -1065,7 +1067,7 @@ collision_mask = 8
 script = ExtResource("5_wsvm7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1815140148]
-position = Vector2(0, -2)
+position = Vector2(0, -5)
 shape = SubResource("CapsuleShape2D_0ljqv")
 
 [node name="UI" type="Node2D" parent="." unique_id=885422498]

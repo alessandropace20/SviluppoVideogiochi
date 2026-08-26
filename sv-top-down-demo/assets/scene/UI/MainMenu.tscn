@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://duprcktbuey8f"]
 
-[ext_resource type="Texture2D" uid="uid://dx6l5npghov4j" path="res://resources/sprites/backgrounds/Copertina.png" id="1_gio6m"]
 [ext_resource type="Script" uid="uid://cdblwy1w3jjyx" path="res://assets/script/main_menu.gd" id="1_lva74"]
+[ext_resource type="Texture2D" uid="uid://gjq8v0oxvq84" path="res://resources/sprites/others/NEW_BG_FOR_TITLE.png.png" id="2_awn8f"]
 [ext_resource type="Texture2D" uid="uid://bx81yklll3pmd" path="res://resources/sprites/buttons/PLAY-Button.png" id="2_n166a"]
 [ext_resource type="Texture2D" uid="uid://dx8sw57vu4dr5" path="res://resources/sprites/buttons/LOAD_Button.png" id="2_w0pqk"]
 [ext_resource type="Texture2D" uid="uid://o5xumipogx12" path="res://resources/sprites/buttons/PLAY-Pressed-Button.png" id="3_h1s1j"]
 [ext_resource type="Texture2D" uid="uid://chbaxdfw13sfc" path="res://resources/sprites/buttons/LOAD-Pressed-Button.png.png" id="3_iq62q"]
+[ext_resource type="Texture2D" uid="uid://dordghf2dovx7" path="res://resources/sprites/others/Reclaimed_logo copia-1.png.png" id="3_owpw5"]
 [ext_resource type="Texture2D" uid="uid://ds7av76sgr5wv" path="res://resources/sprites/buttons/QUIT-Button.png" id="6_gp614"]
 [ext_resource type="Texture2D" uid="uid://uhykkpgwc3rh" path="res://resources/sprites/buttons/OPTION-Button.png" id="7_8g6fe"]
 [ext_resource type="Texture2D" uid="uid://dcqq4qdlxn6up" path="res://resources/sprites/buttons/QUIT-Pressed-Button.png" id="7_agld2"]
@@ -30,18 +31,24 @@ anchors_preset = 0
 
 [node name="Base" type="Node2D" parent="MainMenu" unique_id=831866147]
 
-[node name="Sprite2D" type="Sprite2D" parent="MainMenu/Base" unique_id=1438856455]
+[node name="BackGround" type="Sprite2D" parent="MainMenu/Base" unique_id=1438856455]
 position = Vector2(576, 328)
-scale = Vector2(1.4251398, 1.4477719)
-texture = ExtResource("1_gio6m")
+scale = Vector2(1.4353498, 1.4565494)
+texture = ExtResource("2_awn8f")
+
+[node name="Title" type="Sprite2D" parent="MainMenu/Base" unique_id=1006413367]
+texture_filter = 1
+position = Vector2(480, 64)
+scale = Vector2(0.5589569, 0.5589569)
+texture = ExtResource("3_owpw5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1020620282]
 texture_filter = 1
 layout_mode = 0
 offset_left = 96.00001
-offset_top = 104.0
+offset_top = 136.0
 offset_right = 144.0
-offset_bottom = 180.0
+offset_bottom = 212.0
 scale = Vector2(5.3209767, 5.750387)
 
 [node name="PlayButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=1932213748]
@@ -65,6 +72,7 @@ texture_normal = ExtResource("6_gp614")
 texture_pressed = ExtResource("7_agld2")
 
 [node name="OptionsPanel" type="Control" parent="." unique_id=1231808833]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 488.0

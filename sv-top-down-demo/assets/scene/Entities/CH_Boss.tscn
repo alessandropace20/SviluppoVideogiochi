@@ -887,7 +887,8 @@ size = Vector2(16, 7)
 radius = 137.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obbiv"]
-height = 34.0
+radius = 12.0
+height = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g730j"]
 size = Vector2(12, 20)
@@ -911,9 +912,9 @@ death_sound = ExtResource("2_fhtux")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1090746450]
 texture_filter = 1
 position = Vector2(4.7683716e-07, -4.7683716e-07)
-scale = Vector2(1.171875, 1.171875)
+scale = Vector2(1.4174883, 1.4174883)
 sprite_frames = SubResource("SpriteFrames_46t1s")
-animation = &"hurt_left"
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=571477722]
 position = Vector2(0, 7.5)
@@ -936,18 +937,18 @@ collision_mask = 8
 script = ExtResource("6_tupqt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=743148607]
-position = Vector2(0, -4)
+position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_obbiv")
 
 [node name="UI" type="Node2D" parent="." unique_id=67922160]
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=1903936011]
 texture_filter = 1
-offset_left = -28.0
-offset_top = -34.0
-offset_right = 52.0
-offset_bottom = -2.0
-scale = Vector2(0.7180786, 0.7180786)
+offset_left = -31.0
+offset_top = -45.0
+offset_right = 49.0
+offset_bottom = -13.0
+scale = Vector2(0.80799335, 0.80799335)
 value = 100.0
 texture_under = ExtResource("7_gf6vq")
 texture_over = ExtResource("8_rh42i")
