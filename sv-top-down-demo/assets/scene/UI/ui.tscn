@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://bsku2yuadw0uk" path="res://assets/script/PauseMenu.gd" id="10_gjir4"]
 [ext_resource type="Texture2D" uid="uid://yt4rrj2ihfev" path="res://resources/sprites/backgrounds/Pause_Menu_BG.png" id="10_x4pe2"]
 [ext_resource type="Texture2D" uid="uid://bx81yklll3pmd" path="res://resources/sprites/buttons/PLAY-Button.png" id="11_gjir4"]
-[ext_resource type="Texture2D" uid="uid://ch4vajgbwsj4g" path="res://resources/sprites/backgrounds/BackGround-NEW.png" id="11_ocx7q"]
 [ext_resource type="Texture2D" uid="uid://o5xumipogx12" path="res://resources/sprites/buttons/PLAY-Pressed-Button.png" id="12_an6oe"]
 [ext_resource type="Texture2D" uid="uid://gwctd2qoe5wd" path="res://resources/sprites/buttons/SAVE_NORMAL.png.png" id="15_ns25h"]
 [ext_resource type="Texture2D" uid="uid://ds7av76sgr5wv" path="res://resources/sprites/buttons/QUIT-Button.png" id="15_p5pii"]
@@ -931,7 +930,6 @@ script = ExtResource("10_gjir4")
 modulate = Color(0.019130332, 0.019130332, 0.019130332, 0.28627452)
 position = Vector2(-4, 17)
 scale = Vector2(1.0815378, 1.0815378)
-texture = ExtResource("11_ocx7q")
 
 [node name="BackGround" type="Sprite2D" parent="PauseMenu" unique_id=411159869]
 texture_filter = 1

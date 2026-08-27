@@ -1,5 +1,5 @@
 extends Area2D
-@onready var sprite: AnimatedSprite2D = $Health  # rinomina secondo il nome reale del nodo
+@onready var sprite: AnimatedSprite2D = $Health
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var sfx: AudioStreamPlayer2D = $SFX
 
@@ -7,7 +7,7 @@ extends Area2D
 @export var heal_sound: AudioStream
 
 func _ready() -> void:
-	sprite.play("default")  # o il nome dell'animazione di partenza che hai per questo item
+	sprite.play("default") 
 	body_entered.connect(_on_body_entered)
 	sprite.animation_finished.connect(_on_animation_finished)
 

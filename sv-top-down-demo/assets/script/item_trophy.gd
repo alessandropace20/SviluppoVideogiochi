@@ -20,7 +20,6 @@ func _on_body_entered(body: Node2D) -> void:
 	play_sfx(trophy_sound)
 	level_completed = true
 	
-	# Comunica che il livello è stato completato
 	EventBus.level_completed.emit()
 
 func play_sfx(stream: AudioStream) -> void:

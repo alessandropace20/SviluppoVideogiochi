@@ -7532,7 +7532,7 @@ tile_set = SubResource("TileSet_lx420")
 position = Vector2(264, 438)
 
 [node name="Coin2" parent="Ambient/Items&collectable" unique_id=288084717 instance=ExtResource("12_hw5ue")]
-position = Vector2(-284, 466)
+position = Vector2(-250, 541)
 
 [node name="Coin3" parent="Ambient/Items&collectable" unique_id=1177834355 instance=ExtResource("12_hw5ue")]
 position = Vector2(-415, 225)
