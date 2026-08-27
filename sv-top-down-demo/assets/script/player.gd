@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var speed: float = 150.0
 @export var max_health: int = 100
-@export var attack_damage := 15
-@export var attack2_damage := 2500
+@export var attack_damage := 20
+@export var attack2_damage := 30
 @export var attack_cooldown := 0.0
 @export var attack2_cooldown := 0.2
 @export var hurt_duration := 0.3
@@ -28,10 +28,6 @@ extends CharacterBody2D
 const ACTIVE_FRAME := 1
 const END_FRAME := 3
 
-# ============================================================
-# STATO DEL PLAYER
-# ============================================================
-
 enum State {
 	PLAYING,
 	CUTSCENE,
@@ -39,8 +35,6 @@ enum State {
 }
 
 var state: State = State.PLAYING
-
-# ============================================================
 
 var facing: String = "down"
 var health: int
@@ -75,20 +69,9 @@ func _physics_process(delta):
 	if is_dead:
 		return
 
-	# ========================================================
-	# CUTSCENE
-	# ========================================================
-	# Durante la cutscene il Player non riceve input e non
-	# modifica autonomamente posizione o animazione.
-	# L'AnimationPlayer può quindi controllarlo liberamente.
-	# ========================================================
 	if state == State.CUTSCENE:
 		velocity = Vector2.ZERO
 		return
-
-	# ========================================================
-	# HURT
-	# ========================================================
 
 	if is_hurt:
 		knockback_velocity = knockback_velocity.move_toward(
@@ -99,10 +82,6 @@ func _physics_process(delta):
 		velocity = knockback_velocity
 		move_and_slide()
 		return
-
-	# ========================================================
-	# GAMEPLAY NORMALE
-	# ========================================================
 
 	handle_attack_input()
 
@@ -119,11 +98,6 @@ func _physics_process(delta):
 		update_animation(input_vector)
 
 	move_and_slide()
-
-
-# ============================================================
-# CUTSCENE
-# ============================================================
 
 func enter_cutscene() -> void:
 	if is_dead:
@@ -154,20 +128,13 @@ func exit_cutscene() -> void:
 	is_attacking = false
 	is_hurt = false
 	can_attack = true
-
-
-# Questo metodo può essere richiamato dall'AnimationPlayer
-# tramite una "Call Method Track".
+	
+# utile all'animation player
 func play_cutscene_animation(animation_name: String) -> void:
 	if is_dead:
 		return
 
 	sprite.play(animation_name)
-
-
-# ============================================================
-# ATTACCHI
-# ============================================================
 
 func handle_attack_input() -> void:
 	if not can_attack or is_attacking:
@@ -214,11 +181,6 @@ func disable_all_hitboxes() -> void:
 	for hb in hitboxes.values():
 		hb.set_deferred("disabled", true)
 
-
-# ============================================================
-# ANIMAZIONE
-# ============================================================
-
 func _on_animation_finished():
 	if is_dead and sprite.animation.begins_with("die"):
 		queue_free()
@@ -254,10 +216,6 @@ func update_animation(direction: Vector2) -> void:
 
 	sprite.play("run_" + facing)
 
-
-# ============================================================
-# HURT
-# ============================================================
 
 func enter_hurt(
 	source_position: Vector2,
@@ -297,11 +255,6 @@ func _on_hurt_timeout() -> void:
 	is_hurt = false
 	knockback_velocity = Vector2.ZERO
 	can_attack = true
-
-
-# ============================================================
-# DANNO / VITA
-# ============================================================
 
 func take_damage(
 	damage: int,
@@ -355,10 +308,6 @@ func heal(amount: int) -> void:
 	)
 
 
-# ============================================================
-# MORTE
-# ============================================================
-
 func die() -> void:
 	is_dead = true
 	state = State.DEAD
@@ -376,10 +325,6 @@ func die() -> void:
 
 	sprite.play("die")
 
-
-# ============================================================
-# AUDIO
-# ============================================================
 
 func play_sfx(stream: AudioStream) -> void:
 	if stream == null:

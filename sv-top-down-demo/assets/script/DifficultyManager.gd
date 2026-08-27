@@ -13,7 +13,7 @@ signal difficulty_changed(difficulty: Difficulty)
 
 var modifiers := {
 	Difficulty.EASY: {
-		"health_recovery": 1.25,
+		"health_recovery": 1.0,
 		"enemy_speed": 0.80,
 		"attack2_cooldown": 0.3
 	},
@@ -25,7 +25,7 @@ var modifiers := {
 	},
 
 	Difficulty.HARD: {
-		"health_recovery": 0.75,
+		"health_recovery": 1.0,
 		"enemy_speed": 1.25,
 		"attack2_cooldown": 1.0
 	}

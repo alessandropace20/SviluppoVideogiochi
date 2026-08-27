@@ -3,7 +3,7 @@ extends Area2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var sfx: AudioStreamPlayer2D = $SFX
 
-@export var coin_value: int = 20
+@export var coin_value: int = 10
 @export var coin_id: String = ""
 @export var coin_collect: AudioStream
 

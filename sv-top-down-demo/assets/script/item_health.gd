@@ -3,7 +3,7 @@ extends Area2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var sfx: AudioStreamPlayer2D = $SFX
 
-@export var heal_amount: int = 25
+@export var heal_amount: float = 25.0
 @export var heal_sound: AudioStream
 
 func _ready() -> void:

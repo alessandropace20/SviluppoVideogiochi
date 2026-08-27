@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://ds7av76sgr5wv" path="res://resources/sprites/buttons/QUIT-Button.png" id="6_gp614"]
 [ext_resource type="Texture2D" uid="uid://uhykkpgwc3rh" path="res://resources/sprites/buttons/OPTION-Button.png" id="7_8g6fe"]
 [ext_resource type="Texture2D" uid="uid://dcqq4qdlxn6up" path="res://resources/sprites/buttons/QUIT-Pressed-Button.png" id="7_agld2"]
+[ext_resource type="Texture2D" uid="uid://von5ayo1lbfk" path="res://resources/sprites/buttons/COMMANDS-Normal.png" id="8_6y8hm"]
 [ext_resource type="Texture2D" uid="uid://qpkkxq6tounm" path="res://resources/sprites/buttons/OPTION-Pressed-Button.png" id="8_lva74"]
+[ext_resource type="Texture2D" uid="uid://bv448h6g6enl5" path="res://resources/sprites/buttons/COMMANDS-Pressed.png" id="9_pej0q"]
 [ext_resource type="Texture2D" uid="uid://dyu60xptqgc42" path="res://resources/sprites/backgrounds/NEWOPTIONS-1.png.png" id="11_grccc"]
 [ext_resource type="Texture2D" uid="uid://bo6140v5m313m" path="res://resources/sprites/buttons/BACK.png" id="12_wce3t"]
 [ext_resource type="Texture2D" uid="uid://daym0mkejro1x" path="res://resources/sprites/buttons/BACK_Pressed.png" id="13_pnxrn"]
@@ -21,6 +23,14 @@
 [ext_resource type="Texture2D" uid="uid://dwlfcblkhd2d5" path="res://resources/sprites/buttons/EASY_Toggle.png" id="17_awn8f"]
 [ext_resource type="Texture2D" uid="uid://ck6hooca5i1e8" path="res://resources/sprites/buttons/HARD_Normal.png" id="18_owpw5"]
 [ext_resource type="Texture2D" uid="uid://cpuhd6qjgbrpf" path="res://resources/sprites/buttons/HARD_Toggle.png" id="19_6y8hm"]
+[ext_resource type="Texture2D" uid="uid://cqd01i705ce4c" path="res://resources/sprites/backgrounds/Commands_BackGroudn.png" id="24_pwy14"]
+[ext_resource type="Texture2D" uid="uid://dyr8qs7672yl5" path="res://resources/sprites/buttons/W.png" id="25_8vfh5"]
+[ext_resource type="Texture2D" uid="uid://52fav25au83g" path="res://resources/sprites/buttons/A.png" id="26_fxq4b"]
+[ext_resource type="Texture2D" uid="uid://3nknqckmnixp" path="res://resources/sprites/buttons/S.png" id="27_pacsn"]
+[ext_resource type="Texture2D" uid="uid://oah2dhvrirfl" path="res://resources/sprites/buttons/D.png" id="28_qtof0"]
+[ext_resource type="Texture2D" uid="uid://cljgd661gttn7" path="res://resources/sprites/buttons/J.png" id="29_j2w0j"]
+[ext_resource type="Texture2D" uid="uid://c7qi00g7sgshx" path="res://resources/sprites/buttons/K.png" id="30_ubcni"]
+[ext_resource type="FontFile" uid="uid://bnbiqkk4sdcxk" path="res://resources/fonts/Eazygoin-Regular.ttf" id="31_uyh7j"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=679055312]
 script = ExtResource("1_lva74")
@@ -38,18 +48,18 @@ texture = ExtResource("2_awn8f")
 
 [node name="Title" type="Sprite2D" parent="MainMenu/Base" unique_id=1006413367]
 texture_filter = 1
-position = Vector2(480, 64)
+position = Vector2(576, 64)
 scale = Vector2(0.5589569, 0.5589569)
 texture = ExtResource("3_owpw5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1020620282]
 texture_filter = 1
 layout_mode = 0
-offset_left = 96.00001
+offset_left = 112.0
 offset_top = 136.0
-offset_right = 144.0
-offset_bottom = 212.0
-scale = Vector2(5.3209767, 5.750387)
+offset_right = 160.0
+offset_bottom = 232.0
+scale = Vector2(4.638161, 5.0124674)
 
 [node name="PlayButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=1932213748]
 layout_mode = 2
@@ -60,6 +70,11 @@ texture_pressed = ExtResource("3_h1s1j")
 layout_mode = 2
 texture_normal = ExtResource("2_w0pqk")
 texture_pressed = ExtResource("3_iq62q")
+
+[node name="CommandsButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=994094179]
+layout_mode = 2
+texture_normal = ExtResource("8_6y8hm")
+texture_pressed = ExtResource("9_pej0q")
 
 [node name="OptionsButton" type="TextureButton" parent="MainMenu/VBoxContainer" unique_id=471257769]
 layout_mode = 2
@@ -72,7 +87,6 @@ texture_normal = ExtResource("6_gp614")
 texture_pressed = ExtResource("7_agld2")
 
 [node name="OptionsPanel" type="Control" parent="." unique_id=1231808833]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 488.0
@@ -126,3 +140,109 @@ toggle_mode = true
 button_group = ExtResource("14_grccc")
 texture_normal = ExtResource("18_owpw5")
 texture_pressed = ExtResource("19_6y8hm")
+
+[node name="CommandsPanel" type="Control" parent="." unique_id=511598480]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackGround" type="Sprite2D" parent="CommandsPanel" unique_id=1708320827]
+texture_filter = 1
+position = Vector2(576, 320)
+scale = Vector2(1.453627, 1.453627)
+texture = ExtResource("24_pwy14")
+
+[node name="W" type="Sprite2D" parent="CommandsPanel" unique_id=1140420943]
+texture_filter = 1
+position = Vector2(307.1982, 363.1982)
+scale = Vector2(1.6998887, 1.6998887)
+texture = ExtResource("25_8vfh5")
+
+[node name="A" type="Sprite2D" parent="CommandsPanel" unique_id=177114814]
+texture_filter = 1
+position = Vector2(251.19821, 419.1982)
+scale = Vector2(1.6998887, 1.6998887)
+texture = ExtResource("26_fxq4b")
+
+[node name="S" type="Sprite2D" parent="CommandsPanel" unique_id=267867744]
+texture_filter = 1
+position = Vector2(307.1982, 419.1982)
+scale = Vector2(1.6998887, 1.6998887)
+texture = ExtResource("27_pacsn")
+
+[node name="D" type="Sprite2D" parent="CommandsPanel" unique_id=1316228174]
+texture_filter = 1
+position = Vector2(363.1982, 419.1982)
+scale = Vector2(1.6998887, 1.6998887)
+texture = ExtResource("28_qtof0")
+
+[node name="J" type="Sprite2D" parent="CommandsPanel" unique_id=827732421]
+texture_filter = 1
+position = Vector2(752, 363.1982)
+scale = Vector2(1.6998887, 1.6998887)
+texture = ExtResource("29_j2w0j")
+
+[node name="K" type="Sprite2D" parent="CommandsPanel" unique_id=538627086]
+texture_filter = 1
+position = Vector2(875.19824, 363.1982)
+scale = Vector2(1.6998887, 1.6998887)
+texture = ExtResource("30_ubcni")
+
+[node name="BackButton" type="TextureButton" parent="CommandsPanel" unique_id=1384301192]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 39.999996
+offset_right = 120.0
+offset_bottom = 104.0
+scale = Vector2(1.9499223, 1.9499223)
+texture_normal = ExtResource("12_wce3t")
+texture_pressed = ExtResource("13_pnxrn")
+
+[node name="Label" type="Label" parent="CommandsPanel" unique_id=1323506745]
+texture_filter = 1
+layout_mode = 0
+offset_left = 144.0
+offset_top = 240.0
+offset_right = 301.0
+offset_bottom = 282.0
+scale = Vector2(2.0928652, 2.0928652)
+theme_override_fonts/font = ExtResource("31_uyh7j")
+theme_override_font_sizes/font_size = 44
+text = "Movement"
+
+[node name="Label2" type="Label" parent="CommandsPanel" unique_id=622838326]
+texture_filter = 1
+layout_mode = 0
+offset_left = 704.0
+offset_top = 240.00002
+offset_right = 806.0
+offset_bottom = 282.0
+scale = Vector2(2.2082345, 2.2082345)
+theme_override_fonts/font = ExtResource("31_uyh7j")
+theme_override_font_sizes/font_size = 44
+text = "Attack"
+
+[node name="Label3" type="Label" parent="CommandsPanel" unique_id=292319198]
+texture_filter = 1
+layout_mode = 0
+offset_left = 648.0
+offset_top = 379.19818
+offset_right = 750.0
+offset_bottom = 421.19818
+scale = Vector2(1.6404434, 1.6404434)
+theme_override_fonts/font = ExtResource("31_uyh7j")
+theme_override_font_sizes/font_size = 44
+text = "Light"
+
+[node name="Label4" type="Label" parent="CommandsPanel" unique_id=1693815906]
+texture_filter = 1
+layout_mode = 0
+offset_left = 851.19824
+offset_top = 379.19815
+offset_right = 953.19824
+offset_bottom = 421.19815
+scale = Vector2(1.6404434, 1.6404434)
+theme_override_fonts/font = ExtResource("31_uyh7j")
+theme_override_font_sizes/font_size = 44
+text = "Heavy"

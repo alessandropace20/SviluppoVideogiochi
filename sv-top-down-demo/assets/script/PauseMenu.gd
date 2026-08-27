@@ -13,7 +13,6 @@ func _ready() -> void:
 	quit_button.pressed.connect(_on_quit_pressed)
 	menu_button.pressed.connect(_on_menu_pressed)
 	save_button.pressed.connect(_on_save_pressed)
-	# options_button.pressed.connect(_on_options_pressed)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var attack_range := 30.0
 @export var attack_damage := 30
 @export var attack_cooldown := 2.0
-@export var max_health := 20
+@export var max_health := 200
 @export var reaction_time := 0.5
 
 @export var hurt_duration := 0.3
@@ -104,19 +104,15 @@ func _process_chase() -> void:
 
 	var distance := global_position.distance_to(player.global_position)
 
-	# Siamo abbastanza vicini per attaccare:
-	# il nemico deve fermarsi indipendentemente dal cooldown.
 	if distance <= attack_range:
 		velocity = Vector2.ZERO
 		move_and_slide()
 
-		# Se il cooldown è terminato, attacca.
 		if attack_cooldown_timer.is_stopped():
 			start_attack()
 
 		return
 
-	# Il player è troppo lontano: continua a inseguirlo.
 	var difficulty_speed = speed * DifficultyManager.get_enemy_speed_multiplier()
 	velocity = direction * difficulty_speed
 
@@ -159,8 +155,6 @@ func disable_all_hitboxes() -> void:
 	for hb in hitboxes.values():
 		hb.set_deferred("disabled", true)
 
-# --- HURT ---
-
 func _process_hurt(delta) -> void:
 	# Il knockback si smorza gradualmente con un attrito, invece di sparire di colpo
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_friction * delta)
@@ -191,7 +185,6 @@ func _on_hurt_timeout() -> void:
 	else:
 		change_state(State.IDLE)
 
-# --- Danno / vita ---
 
 func take_damage(damage: int, source_position: Vector2 = global_position, knockback_force: float = -1.0) -> void:
 	if state == State.DEAD:
@@ -201,7 +194,6 @@ func take_damage(damage: int, source_position: Vector2 = global_position, knockb
 		health = 0
 	update_health_bar()
 	show_health_bar()
-	print(name, " ha subito ", damage, " danni. HP: ", health)
 
 	if health == 0:
 		die()

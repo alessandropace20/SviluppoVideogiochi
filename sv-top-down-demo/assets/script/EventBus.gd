@@ -21,7 +21,6 @@ var total_coins: int = 0
 func add_coins(amount: int) -> void:
 	total_coins += amount
 	coins_changed.emit(total_coins)
-	print("Ho aumentato i coins, sono a: " + str(total_coins))
 
 func reset_run() -> void:
 	total_coins = 0

@@ -5,12 +5,14 @@ signal load_requested
 
 @onready var panels := {
 	"main": $MainMenu,
-	"options": $OptionsPanel
+	"options": $OptionsPanel,
+	"commands": $CommandsPanel
 }
 
 @onready var play_button: TextureButton = $MainMenu/VBoxContainer/PlayButton
 @onready var load_button: TextureButton = $MainMenu/VBoxContainer/LoadButton
 @onready var options_button: TextureButton = $MainMenu/VBoxContainer/OptionsButton
+@onready var commands_button: TextureButton = $MainMenu/VBoxContainer/CommandsButton
 @onready var quit_button: TextureButton =  $MainMenu/VBoxContainer/QuitButton
 
 @onready var easy_button: TextureButton = $OptionsPanel/HBoxContainer/Easy
@@ -18,26 +20,27 @@ signal load_requested
 @onready var hard_button: TextureButton = $OptionsPanel/HBoxContainer/Hard
 @onready var options_back_button: TextureButton = $OptionsPanel/BackButton
 
+@onready var commands_back_button: TextureButton = $CommandsPanel/BackButton
+
 
 func _ready() -> void:
 	# Il menu deve continuare a funzionare anche quando
-	# il gioco è in pausa.
+	# il gioco è in pausa
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	# I pannelli occupano tutta l'area del CanvasLayer.
 	for panel: Control in panels.values():
 		panel.set_anchors_preset(Control.PRESET_FULL_RECT)
 
-	# Mostra il menu principale all'avvio.
 	show_panel("main")
 
-	# Collegamento pulsanti.
 	play_button.pressed.connect(_request_play)
 	load_button.pressed.connect(_request_load)
 	options_button.pressed.connect(_open_options)
+	commands_button.pressed.connect(_open_commands)
 	quit_button.pressed.connect(_quit_game)
 
 	options_back_button.pressed.connect(_open_main_menu)
+	commands_back_button.pressed.connect(_open_main_menu)
 	
 	easy_button.pressed.connect(_on_easy_pressed)
 	normal_button.pressed.connect(_on_normal_pressed)
@@ -54,6 +57,9 @@ func _request_load() -> void:
 
 func _open_options() -> void:
 	show_panel("options")
+
+func _open_commands() -> void:
+	show_panel("commands")
 
 
 func _open_main_menu() -> void:
